@@ -355,12 +355,12 @@ def render_scanner():
 
 def render_result(result: dict):
     if result.get("error"):
-        st.markdown(f"""
+        st.html(f"""
         <div class="result-card" style="border-color: rgba(255, 107, 91, 0.5);">
             <div class="result-badge result-phishing">⚠ Error</div>
             <p style="color: var(--coral-dark); margin: 0;">{result["error"]}</p>
         </div>
-        """, unsafe_allow_html=True)
+        """)
         return
 
     label = result["label"]
@@ -375,7 +375,7 @@ def render_result(result: dict):
 
     fill_class = "confidence-phishing" if is_phishing else "confidence-legitimate"
 
-    st.markdown(f"""
+    st.html(f"""
     <div class="result-card">
         <div class="result-badge {badge_class}">{badge_icon} {badge_text}</div>
 
@@ -400,7 +400,7 @@ def render_result(result: dict):
             </div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
 
 def render_info_sections():
