@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkSentry — AI-Powered URL Threat Analysis</title>
+    <meta
+      name="description"
+      content="LinkSentry helps users assess potentially malicious and phishing URLs with AI-powered analysis."
+    />
+    <meta property="og:title" content="LinkSentry — AI-Powered URL Threat Analysis" />
+    <meta
+      property="og:description"
+      content="LinkSentry helps users assess potentially malicious and phishing URLs with AI-powered analysis."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    />
+    <style>
+      @font-face {
+        font-family: "Inter LinkSentry";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1")
+          format("woff2");
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg-page: #000000;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.78);
+        --text-muted: rgba(255, 255, 255, 0.62);
+        --placeholder: #808081;
+        --input-bg: #000000;
+        --input-border: rgba(255, 255, 255, 0.15);
+        --input-border-hover: rgba(255, 255, 255, 0.36);
+        --input-border-focus: rgba(244, 118, 104, 0.72);
+        --accent-start: #ff8a73;
+        --accent-end: #f0605a;
+        --card-border-start: rgba(244, 118, 104, 0.67);
+        --card-border-end: rgba(244, 118, 104, 0.29);
+        --divider: rgba(255, 255, 255, 0.2);
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      html {
+        background-color: var(--bg-page);
+        color: var(--text-primary);
+        font-family: "Inter LinkSentry", "Inter", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-optical-sizing: auto;
+      }
+
+      body {
+        background-color: var(--bg-page);
+        color: var(--text-primary);
+        min-height: 100dvh;
+        overflow-x: hidden;
+      }
+
+      /* Reference-frame scaling container */
+      .vexor-stage {
+        container-type: inline-size;
+        width: 100%;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Desktop: 1440 reference frame */
+      .vexor-frame {
+        --u: calc(100cqw / 1440);
+        --v: min(calc(100cqw / 1240), calc(100dvh / 720));
+        width: 100%;
+        padding-inline: calc(30 * var(--u));
+        padding-block: calc(28 * var(--v));
+        display: flex;
+        flex-direction: column;
+        gap: calc(72 * var(--v));
+      }
+
+      /* CTA Card: 1380 x 340u with 20u radius */
+      .cta-card {
+        position: relative;
+        width: 100%;
+        min-height: calc(340 * var(--v));
+        border-radius: calc(20 * var(--u));
+        background-color: #000000;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: calc(44 * var(--v)) calc(32 * var(--u));
+        isolation: isolate;
+      }
+
+      /* Card coral gradient border (draws in entrance sequence) */
+      .cta-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          var(--card-border-start) 0%,
+          var(--card-border-end) 100%
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 4;
+        animation: ruleDraw 0.45s var(--ease-out-expo) 0.02s both;
+      }
+
+      /* Still smoke plate */
+      .cta-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .cta-plate,
+      .cta-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: right bottom;
+        display: block;
+      }
+
+      .cta-video {
+        opacity: 0;
+        transition: opacity 0.65s ease;
+      }
+
+      .cta-video.is-loaded {
+        opacity: 0.8;
+      }
+
+      /* Soft contrast scrim behind centered copy */
+      .cta-scrim {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse 64% 85% at 50% 50%,
+          rgba(0, 0, 0, 0.46) 0%,
+          rgba(0, 0, 0, 0.14) 72%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      /* Centered CTA copy & waitlist pill */
+      .cta-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: calc(640 * var(--u));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .cta-title {
+        font-size: max(22px, calc(34 * var(--u)));
+        font-weight: 600;
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        text-wrap: balance;
+        margin-bottom: calc(14 * var(--v));
+        animation: titleRise 0.5s var(--ease-out-expo) 0.24s both;
+      }
+
+      .cta-sub {
+        font-size: max(13px, calc(15 * var(--u)));
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.005em;
+        color: var(--text-secondary);
+        margin-bottom: calc(28 * var(--v));
+        animation: copyFade 0.45s var(--ease-out-expo) 0.44s both;
+      }
+
+      /* Waitlist form & pill */
+      .waitlist-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .waitlist-pill {
+        width: min(100%, calc(460 * var(--u)));
+        min-height: max(46px, calc(50 * var(--u)));
+        padding: calc(4 * var(--u));
+        border-radius: 9999px;
+        background-color: var(--input-bg);
+        border: 1px solid var(--input-border);
+        display: flex;
+        align-items: center;
+        gap: calc(8 * var(--u));
+        transform-origin: center center;
+        transition:
+          border-color 0.18s var(--ease-out-expo),
+          box-shadow 0.18s var(--ease-out-expo);
+        animation: formExpand 0.48s var(--ease-out-expo) 0.64s both;
+      }
+
+      .waitlist-pill:hover {
+        border-color: var(--input-border-hover);
+      }
+
+      .waitlist-pill:focus-within {
+        border-color: var(--input-border-focus);
+        box-shadow: 0 0 0 3px rgba(240, 96, 90, 0.14);
+      }
+
+      .waitlist-pill.has-error {
+        border-color: rgba(255, 112, 102, 0.85);
+      }
+
+      .waitlist-input {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: max(38px, calc(40 * var(--u)));
+        padding-inline: calc(18 * var(--u)) calc(8 * var(--u));
+        background: transparent;
+        border: 0;
+        outline: none;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: max(13px, calc(13.5 * var(--u)));
+        font-weight: 400;
+        letter-spacing: 0.005em;
+      }
+
+      .waitlist-input::placeholder {
+        color: var(--placeholder);
+        opacity: 1;
+      }
+
+      .waitlist-btn {
+        flex: 0 0 auto;
+        height: max(38px, calc(40 * var(--u)));
+        padding-inline: calc(20 * var(--u));
+        border: 0;
+        border-radius: 9999px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: max(13px, calc(13.5 * var(--u)));
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        color: #ffffff;
+        white-space: nowrap;
+        background: linear-gradient(
+          180deg,
+          var(--accent-start) 0%,
+          var(--accent-end) 100%
+        );
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.36),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.14),
+          0 2px 14px rgba(240, 96, 90, 0.24);
+        transition:
+          transform 0.18s var(--ease-out-expo),
+          box-shadow 0.18s var(--ease-out-expo),
+          filter 0.18s var(--ease-out-expo);
+        animation: buttonPop 0.32s var(--ease-pop) 0.92s both;
+      }
+
+      .waitlist-btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.06);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.45),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+          0 6px 22px rgba(255, 128, 108, 0.45);
+      }
+
+      .waitlist-btn:active {
+        transform: translateY(0);
+      }
+
+      .waitlist-btn:focus-visible {
+        outline: 2px solid #ffffff;
+        outline-offset: 2px;
+      }
+
+      .waitlist-status {
+        margin-top: calc(10 * var(--v));
+        min-height: 1.35em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: max(12px, calc(12.5 * var(--u)));
+        line-height: 1.35;
+        color: var(--text-secondary);
+        opacity: 0;
+        transform: translateY(4px);
+        transition:
+          opacity 0.2s var(--ease-out-expo),
+          transform 0.2s var(--ease-out-expo);
+      }
+
+      .waitlist-status.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .waitlist-status.is-error {
+        color: #ff9c92;
+      }
+
+      .waitlist-status.is-success {
+        color: #ffd6cf;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Footer (same side margins as card via .vexor-frame) */
+      .vexor-footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: calc(48 * var(--u));
+        padding-bottom: calc(44 * var(--v));
+      }
+
+      .footer-brand {
+        max-width: calc(430 * var(--u));
+        display: flex;
+        flex-direction: column;
+        gap: calc(20 * var(--v));
+      }
+
+      .vexor-mark {
+        width: max(30px, calc(34 * var(--u)));
+        height: auto;
+        display: block;
+        color: var(--text-primary);
+        animation: footerFade 0.32s var(--ease-out-expo) 1.08s both;
+      }
+
+      .footer-copy {
+        font-size: max(12.5px, calc(13.5 * var(--u)));
+        font-weight: 400;
+        line-height: 1.62;
+        letter-spacing: 0.008em;
+        color: var(--text-muted);
+        animation: footerFade 0.32s var(--ease-out-expo) 1.12s both;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        gap: calc(10 * var(--v));
+        animation: footerFade 0.32s var(--ease-out-expo) 1.14s both;
+      }
+
+      .footer-contact-heading {
+        font-size: max(13px, calc(14 * var(--u)));
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--text-primary);
+      }
+
+      .footer-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: max(12.5px, calc(13.5 * var(--u)));
+        line-height: 1.5;
+        font-variant-numeric: tabular-nums;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 1px;
+        transition: color 0.16s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--text-primary);
+        text-decoration: underline;
+      }
+
+      .footer-link:focus-visible {
+        outline: 2px solid var(--accent-start);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      .footer-address {
+        font-style: normal;
+        font-size: max(12.5px, calc(13.5 * var(--u)));
+        line-height: 1.55;
+        color: var(--text-muted);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--divider);
+        padding-top: calc(24 * var(--v));
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: calc(24 * var(--u));
+        font-size: max(12px, calc(13 * var(--u)));
+        line-height: 1.5;
+        color: var(--text-muted);
+        animation: footerFade 0.32s var(--ease-out-expo) 1.16s both;
+      }
+
+      .footer-email-wrap {
+        color: var(--text-muted);
+      }
+
+      .footer-email-wrap .footer-link {
+        color: var(--text-primary);
+        font-size: inherit;
+      }
+
+      /* Tablet reference box: 768 x 700 */
+      @media (max-width: 1023px) {
+        .vexor-frame {
+          --u: calc(100cqw / 768);
+          --v: min(calc(100cqw / 768), calc(100dvh / 700));
+          padding-inline: calc(24 * var(--u));
+          padding-block: calc(28 * var(--v));
+          gap: calc(48 * var(--v));
+        }
+
+        .cta-card {
+          min-height: calc(300 * var(--v));
+          border-radius: calc(18 * var(--u));
+          padding: calc(36 * var(--v)) calc(28 * var(--u));
+        }
+
+        .cta-content {
+          max-width: calc(560 * var(--u));
+        }
+
+        .cta-title {
+          font-size: max(22px, calc(28 * var(--u)));
+          margin-bottom: calc(12 * var(--v));
+        }
+
+        .cta-sub {
+          font-size: max(13.5px, calc(14 * var(--u)));
+          margin-bottom: calc(24 * var(--v));
+        }
+
+        .waitlist-pill {
+          width: min(100%, calc(440 * var(--u)));
+          min-height: max(46px, calc(48 * var(--u)));
+          padding: calc(4 * var(--u));
+        }
+
+        .waitlist-input {
+          padding-inline: calc(16 * var(--u)) calc(8 * var(--u));
+          font-size: max(13px, calc(13.5 * var(--u)));
+        }
+
+        .waitlist-btn {
+          padding-inline: calc(18 * var(--u));
+          font-size: max(13px, calc(13.5 * var(--u)));
+        }
+
+        .footer-top {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: calc(28 * var(--v));
+          padding-bottom: calc(32 * var(--v));
+        }
+
+        .footer-brand {
+          max-width: calc(500 * var(--u));
+          gap: calc(16 * var(--v));
+        }
+
+        .footer-contact {
+          align-items: flex-start;
+          text-align: left;
+          gap: calc(8 * var(--v));
+        }
+
+        .footer-bottom {
+          flex-wrap: wrap;
+          padding-top: calc(20 * var(--v));
+        }
+      }
+
+      /* Shorter tablet reference box: 768 x 612 */
+      @media (max-width: 1023px) and (max-height: 640px) {
+        .vexor-frame {
+          --v: min(calc(100cqw / 768), calc(100dvh / 612));
+          gap: calc(36 * var(--v));
+        }
+
+        .cta-card {
+          min-height: calc(264 * var(--v));
+        }
+      }
+
+      /* Phone reference box: 390 x 655 */
+      @media (max-width: 560px) {
+        .vexor-stage {
+          justify-content: flex-start;
+        }
+
+        .vexor-frame {
+          --u: calc(100cqw / 390);
+          --v: min(calc(100cqw / 390), calc(100dvh / 655));
+          padding-inline: calc(16 * var(--u));
+          padding-block: calc(20 * var(--v)) calc(28 * var(--v));
+          gap: calc(40 * var(--v));
+        }
+
+        .cta-card {
+          min-height: calc(320 * var(--v));
+          border-radius: calc(16 * var(--u));
+          padding: calc(36 * var(--v)) calc(20 * var(--u));
+        }
+
+        .cta-content {
+          max-width: 100%;
+        }
+
+        .cta-title {
+          font-size: calc(24 * var(--u));
+          margin-bottom: calc(12 * var(--v));
+        }
+
+        .cta-sub {
+          font-size: calc(13.5 * var(--u));
+          margin-bottom: calc(24 * var(--v));
+        }
+
+        .cta-sub br {
+          display: none;
+        }
+
+        .waitlist-pill {
+          width: 100%;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          flex-direction: column;
+          gap: calc(10 * var(--v));
+        }
+
+        .waitlist-pill:focus-within {
+          box-shadow: none;
+        }
+
+        .waitlist-input {
+          width: 100%;
+          flex: none;
+          height: 46px;
+          padding-inline: 18px;
+          border-radius: 9999px;
+          background-color: var(--input-bg);
+          border: 1px solid var(--input-border);
+          font-size: 14px;
+          text-align: center;
+          transition:
+            border-color 0.18s var(--ease-out-expo),
+            box-shadow 0.18s var(--ease-out-expo);
+        }
+
+        .waitlist-input:hover {
+          border-color: var(--input-border-hover);
+        }
+
+        .waitlist-input:focus {
+          border-color: var(--input-border-focus);
+          box-shadow: 0 0 0 3px rgba(240, 96, 90, 0.16);
+        }
+
+        .waitlist-pill.has-error .waitlist-input {
+          border-color: rgba(255, 112, 102, 0.85);
+        }
+
+        .waitlist-btn {
+          width: 100%;
+          height: 46px;
+          padding-inline: 20px;
+          font-size: 14px;
+        }
+
+        .footer-top {
+          gap: calc(28 * var(--v));
+          padding-bottom: calc(28 * var(--v));
+        }
+
+        .footer-brand {
+          max-width: 100%;
+          gap: calc(14 * var(--v));
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: calc(10 * var(--v));
+          padding-top: calc(20 * var(--v));
+        }
+      }
+
+      /* Entrance keyframes (~1.4s total) */
+      @keyframes ruleDraw {
+        0% {
+          opacity: 0;
+          clip-path: inset(0 50% 0 50%);
+        }
+        100% {
+          opacity: 1;
+          clip-path: inset(0 0% 0 0%);
+        }
+      }
+
+      @keyframes titleRise {
+        0% {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes copyFade {
+        0% {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes formExpand {
+        0% {
+          opacity: 0;
+          transform: scaleX(0.82) scaleY(0.96);
+        }
+        100% {
+          opacity: 1;
+          transform: scaleX(1) scaleY(1);
+        }
+      }
+
+      @keyframes buttonPop {
+        0% {
+          opacity: 0;
+          transform: scale(0.88);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes footerFade {
+        0% {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Reduced motion: static, no video */
+      @media (prefers-reduced-motion: reduce) {
+        .cta-video {
+          display: none !important;
+        }
+
+        .cta-card::after,
+        .cta-title,
+        .cta-sub,
+        .waitlist-pill,
+        .waitlist-btn,
+        .vexor-mark,
+        .footer-copy,
+        .footer-contact,
+        .footer-bottom {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+          clip-path: none !important;
+        }
+
+        .waitlist-pill,
+        .waitlist-input,
+        .waitlist-btn,
+        .waitlist-status,
+        .footer-link {
+          transition: none !important;
+        }
+
+        .waitlist-btn:hover {
+          transform: none;
+        }
+      }
+
+      /* LinkSentry identity and scan-result section */
+      .site-header { width:100%; display:flex; align-items:center; justify-content:space-between; padding:0 calc(8 * var(--u)); }
+      .brand-lockup,.footer-brand-name { display:inline-flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-size:max(17px,calc(19 * var(--u))); font-weight:700; letter-spacing:-.045em; }
+      .brand-lockup > span:last-child span,.footer-brand-name > span:last-child { color:#ff8a73; }
+      .brand-symbol { width:30px; height:30px; display:inline-grid; place-items:center; color:#ff8a73; }
+      .brand-symbol svg { width:100%; height:100%; }
+      .header-tag { color:rgba(220,235,228,.54); font-size:10px; letter-spacing:.18em; font-weight:600; }
+      .hero-eyebrow { display:inline-flex; align-items:center; gap:9px; margin-bottom:20px; padding:8px 12px; border:1px solid rgba(244,118,104,.24); border-radius:999px; color:#ffd6cf; background:rgba(240,96,90,.08); font-size:10px; font-weight:650; letter-spacing:.16em; animation:copyFade .45s var(--ease-out-expo) .12s both; }
+      .eyebrow-dot,.results-status span { width:7px; height:7px; display:inline-block; border-radius:50%; background:#ff8a73; box-shadow:0 0 12px rgba(244,118,104,.8); }
+      .cta-title span { color:#ff8a73; }
+      .cta-sub { max-width:560px; }
+      .hero-trust { display:flex; align-items:center; gap:9px; margin-top:15px; color:rgba(220,235,228,.58); font-size:11px; letter-spacing:.02em; }
+      .hero-trust > span { color:#ff8a73; font-size:17px; }
+      .hero-trust i { width:3px; height:3px; border-radius:50%; background:rgba(220,235,228,.4); }
+      .waitlist-btn { display:inline-flex; align-items:center; justify-content:center; gap:12px; color:#000000; }
+      .waitlist-btn span:last-child { font-size:17px; line-height:1; }
+      .results-section { width:100%; padding:calc(12 * var(--v)) calc(10 * var(--u)) calc(8 * var(--v)); color:#fff; }
+      .results-heading-row { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:24px; }
+      .section-kicker { margin-bottom:9px; color:#ff8a73; font-size:10px; font-weight:650; letter-spacing:.19em; }
+      .results-heading-row h2 { font-size:clamp(25px,3vw,36px); line-height:1.1; letter-spacing:-.045em; font-weight:600; }
+      .results-intro { margin-top:9px; color:rgba(255,255,255,.56); font-size:13px; line-height:1.6; }
+      .results-status { display:inline-flex; align-items:center; gap:9px; padding:9px 12px; border:1px solid rgba(244,118,104,.18); border-radius:999px; color:rgba(209,239,223,.72); background:rgba(240,96,90,.07); font-size:9px; font-weight:650; letter-spacing:.13em; white-space:nowrap; }
+      .results-status span { width:6px; height:6px; }
+      .results-empty { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:22px; min-height:154px; padding:28px 30px; border:1px solid rgba(255,255,255,.11); border-radius:16px; background:linear-gradient(120deg,rgba(28,22,22,.92),rgba(9,13,15,.94)); box-shadow:0 20px 70px rgba(0,0,0,.18); }
+      .empty-icon { width:54px; height:54px; display:grid; place-items:center; border:1px solid rgba(244,118,104,.2); border-radius:15px; color:#ff8a73; background:rgba(240,96,90,.08); }
+      .empty-icon svg { width:30px; height:30px; }
+      .results-empty h3 { margin-bottom:7px; color:#f5f8f6; font-size:16px; font-weight:600; letter-spacing:-.02em; }
+      .results-empty p { max-width:520px; color:rgba(229,238,233,.56); font-size:12px; line-height:1.65; }
+      .empty-points { display:flex; flex-direction:column; gap:9px; color:rgba(229,238,233,.62); font-size:10px; white-space:nowrap; }
+      .empty-points b { margin-right:8px; color:#ff8a73; font-variant-numeric:tabular-nums; font-weight:600; }
+      .results-disclaimer { margin-top:13px; color:rgba(229,238,233,.38); font-size:10px; line-height:1.6; }
+      .footer-brand-name { animation:footerFade .32s var(--ease-out-expo) 1.08s both; }
+      .footer-tech { margin-left:auto; }
+      .footer-copy { max-width:430px; }
+      @media (max-width:1023px) { .results-empty { grid-template-columns:auto minmax(0,1fr); } .empty-points { grid-column:2; flex-direction:row; flex-wrap:wrap; } .footer-tech { margin-left:0; } }
+      @media (max-width:560px) { .site-header { padding:0 2px; } .header-tag { font-size:8px; letter-spacing:.1em; } .brand-lockup { font-size:17px; } .brand-symbol { width:27px; height:27px; } .hero-eyebrow { margin-bottom:16px; font-size:8px; letter-spacing:.12em; } .hero-trust { flex-wrap:wrap; justify-content:center; font-size:10px; } .results-section { padding:0 2px; } .results-heading-row { align-items:flex-start; flex-direction:column; gap:14px; } .results-empty { grid-template-columns:1fr; gap:14px; padding:22px 19px; } .empty-points { grid-column:1; flex-direction:column; } .results-status { font-size:8px; } .footer-brand-name { font-size:18px; } }
+
+      /* Result card styles (for populated results) */
+      .result-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: start;
+        gap: 22px;
+        min-height: 154px;
+        padding: 28px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 16px;
+        background: linear-gradient(120deg, rgba(28, 22, 22, 0.92), rgba(9, 13, 15, 0.94));
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.18);
+        animation: slideUp 0.3s var(--ease-out-expo);
+      }
+
+      @keyframes slideUp {
+        0% { opacity: 0; transform: translateY(16px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      .result-icon {
+        width: 54px;
+        height: 54px;
+        display: grid;
+        place-items: center;
+        border: 1px solid;
+        border-radius: 15px;
+      }
+
+      .result-icon.phishing {
+        border-color: rgba(255, 112, 102, 0.3);
+        color: #ff7066;
+        background: rgba(255, 112, 102, 0.1);
+      }
+
+      .result-icon.legitimate {
+        border-color: rgba(76, 175, 80, 0.3);
+        color: #4caf50;
+        background: rgba(76, 175, 80, 0.1);
+      }
+
+      .result-icon svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .result-content h3 {
+        margin: 0 0 7px 0;
+        color: #f5f8f6;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .result-content p {
+        margin: 0;
+        max-width: 520px;
+        color: rgba(229, 238, 233, 0.56);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .result-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        color: rgba(229, 238, 233, 0.62);
+        font-size: 10px;
+        white-space: nowrap;
+        text-align: right;
+      }
+
+      .result-meta .meta-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .result-meta b {
+        color: #ff8a73;
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+      }
+
+      .confidence-bar-wrap {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-top: 4px;
+      }
+
+      .confidence-bar-fill {
+        height: 100%;
+        border-radius: 3px;
+        transition: width 0.5s var(--ease-out-expo);
+      }
+
+      .confidence-bar-fill.phishing {
+        background: linear-gradient(90deg, #ff8a73 0%, #f0605a 100%);
+      }
+
+      .confidence-bar-fill.legitimate {
+        background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+      }
+
+      .probability-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .prob-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .prob-label {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        color: rgba(229, 238, 233, 0.45);
+      }
+
+      .prob-value {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .prob-value.phishing { color: #ff7066; }
+      .prob-value.legitimate { color: #4caf50; }
+
+      @media (max-width: 560px) {
+        .result-card {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          padding: 22px 19px;
+        }
+        .result-meta {
+          text-align: left;
+        }
+        .probability-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="vexor-stage">
+      <div class="vexor-frame">
+        <header class="site-header">
+          <a class="brand-lockup" href="#top" aria-label="LinkSentry home">
+            <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M14 2.8 23 6v7.1c0 5.5-3.7 9.5-9 12.1-5.3-2.6-9-6.6-9-12.1V6l9-3.2Z" stroke="currentColor" stroke-width="1.7"/><path d="m9.4 13.9 3 3 6.4-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Link<span>Sentry</span></span>
+          </a>
+          <div class="header-tag">URL SECURITY · AI ANALYSIS</div>
+        </header>
+        <section class="cta-card" id="top" aria-labelledby="cta-headline">
+          <div class="cta-media" aria-hidden="true">
+            <img
+              class="cta-plate"
+              src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/03c58212-3a59-4c80-b19d-30d05a174563.webp"
+              alt=""
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
+            <video
+              class="cta-video"
+              id="smoke-video"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="auto"
+            >
+              <source
+                src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/f6f4ec49-d5dd-4893-8eb4-fa0f932aceaf.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="cta-scrim" aria-hidden="true"></div>
+
+          <div class="cta-content">
+            <div class="hero-eyebrow"><span class="eyebrow-dot"></span> AI-POWERED URL THREAT ANALYSIS</div>
+            <h1 class="cta-title" id="cta-headline">Think before you click.<br /><span>Scan before you trust.</span></h1>
+            <p class="cta-sub">
+              Check suspicious links with AI-powered URL analysis.<br />
+              Understand the risk before you visit a website.
+            </p>
+
+            <form class="waitlist-form" id="waitlist-form" novalidate>
+              <div class="waitlist-pill" id="waitlist-pill">
+                <label class="sr-only" for="waitlist-email">Website URL to scan</label>
+                <input
+                  class="waitlist-input"
+                  id="waitlist-email"
+                  name="url"
+                  type="text"
+                  inputmode="url"
+                  autocomplete="url"
+                  spellcheck="false"
+                  placeholder="Paste a website URL to scan..."
+                  aria-describedby="waitlist-status"
+                  required
+                />
+                <button class="waitlist-btn" type="submit" id="waitlist-btn">
+                  <span>Scan URL</span><span aria-hidden="true">↗</span>
+                </button>
+              </div>
+              <p
+                class="waitlist-status"
+                id="waitlist-status"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+            <div class="hero-trust"><span>⌁</span> No account required <i></i> AI-assisted URL assessment</div>
+          </div>
+        </section>
+
+
+        <section class="results-section" id="scan-results" aria-labelledby="results-heading">
+          <div class="results-heading-row">
+            <div>
+              <p class="section-kicker">YOUR LINK, UNDER THE LENS</p>
+              <h2 id="results-heading">Scan results</h2>
+              <p class="results-intro">Your URL analysis will appear here after you run a scan.</p>
+            </div>
+            <span class="results-status" id="results-status"><span></span> READY TO ANALYZE</span>
+          </div>
+          <div class="results-empty" id="results-empty">
+            <div class="empty-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="20.5" cy="20.5" r="12.5" stroke="currentColor" stroke-width="1.7"/><path d="m30 30 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 20.5h10M20.5 15.5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div>
+              <h3>Nothing scanned yet</h3>
+              <p>Paste a URL above and start an analysis. The model verdict, confidence and URL indicators will be shown in this space.</p>
+            </div>
+            <div class="empty-points"><span><b>01</b> Model prediction</span><span><b>02</b> Confidence score</span><span><b>03</b> Risk indicators</span></div>
+          </div>
+          <p class="results-disclaimer">LinkSentry provides an automated assessment, not a guarantee that a website is safe. Avoid entering sensitive information on unfamiliar websites.</p>
+        </section>
+
+        <footer class="vexor-footer">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <div class="footer-brand-name"><span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M14 2.8 23 6v7.1c0 5.5-3.7 9.5-9 12.1-5.3-2.6-9-6.6-9-12.1V6l9-3.2Z" stroke="currentColor" stroke-width="1.7"/><path d="m9.4 13.9 3 3 6.4-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Link<span>Sentry</span></div>
+              <p class="footer-copy">An AI-powered phishing URL analysis project designed to help people think twice before opening suspicious links.</p>
+            </div>
+            <div class="footer-contact">
+              <h2 class="footer-contact-heading">How it works</h2>
+              <p class="footer-address">Enter a URL<br />Run the AI analysis<br />Review the prediction and risk indicators</p>
+            </div>
+            <div class="footer-contact footer-tech">
+              <h2 class="footer-contact-heading">Technology</h2>
+              <p class="footer-address">Pretrained URL classification<br />Python · Streamlit<br />Machine learning inference</p>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>© 2026 LinkSentry. Academic project.</p>
+            <p class="footer-email-wrap">AI predictions are informative, not a security guarantee.</p>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <script type="module">
+      import { Streamlit } from "streamlit-component-lib";
+
+      // DOM elements
+      const form = document.getElementById("waitlist-form");
+      const pill = document.getElementById("waitlist-pill");
+      const input = document.getElementById("waitlist-email");
+      const status = document.getElementById("waitlist-status");
+      const btn = document.getElementById("waitlist-btn");
+      const resultsSection = document.getElementById("scan-results");
+      const resultsEmpty = document.getElementById("results-empty");
+      const resultsStatus = document.getElementById("results-status");
+
+      const urlPattern = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(:\d{1,5})?(\/[^\s]*)?$/i;
+
+      // Request ID for deduplication
+      let lastRequestId = 0;
+      let isScanning = false;
+
+      // Video handling (from original)
+      const video = document.getElementById("smoke-video");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const syncVideoMotion = () => {
+        if (!video) return;
+        if (reducedMotion.matches) { video.pause(); video.classList.remove("is-loaded"); return; }
+        if (video.readyState >= 2) video.classList.add("is-loaded");
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
+      };
+      if (video) {
+        video.addEventListener("loadeddata", () => { if (!reducedMotion.matches) video.classList.add("is-loaded"); });
+        syncVideoMotion();
+        if (typeof reducedMotion.addEventListener === "function") reducedMotion.addEventListener("change", syncVideoMotion);
+      }
+
+      // Status helpers
+      const setPillStatus = (type, message) => {
+        status.textContent = message;
+        status.className = "waitlist-status is-visible" + (type === "error" ? " is-error" : " is-success");
+        pill.classList.toggle("has-error", type === "error");
+        input.setAttribute("aria-invalid", type === "error" ? "true" : "false");
+      };
+
+      const clearPillStatus = () => {
+        pill.classList.remove("has-error");
+        input.removeAttribute("aria-invalid");
+        status.className = "waitlist-status";
+        status.textContent = "";
+        btn.disabled = false;
+        btn.innerHTML = '<span>Scan URL</span><span aria-hidden="true">↗</span>';
+      };
+
+      // Render result card in results section
+      const renderResult = (result) => {
+        // Hide empty state
+        resultsEmpty.style.display = "none";
+
+        const isPhishing = result.label === "phishing";
+        const iconClass = isPhishing ? "phishing" : "legitimate";
+        const statusClass = isPhishing ? "is-error" : "is-success";
+        const statusText = isPhishing ? "PHISHING DETECTED" : "LEGITIMATE";
+        const titleText = isPhishing ? "Phishing Detected" : "Legitimate URL";
+        const descText = isPhishing
+          ? "This URL shows characteristics of a phishing attempt. Avoid entering credentials or personal information."
+          : "This URL appears to be legitimate based on AI analysis. Exercise normal caution when browsing.";
+        const fillClass = isPhishing ? "phishing" : "legitimate";
+
+        const iconSvg = isPhishing
+          ? `<svg viewBox="0 0 48 48" fill="none"><circle cx="20.5" cy="20.5" r="12.5" stroke="currentColor" stroke-width="1.7"/><path d="m30 30 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 20.5h10M20.5 15.5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`
+          : `<svg viewBox="0 0 48 48" fill="none"><circle cx="20.5" cy="20.5" r="12.5" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 20.5h10M20.5 15.5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 20.5l4.5 4.5 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+        // Remove any existing result card
+        const existingCard = resultsSection.querySelector(".result-card");
+        if (existingCard) existingCard.remove();
+
+        // Create and insert result card
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
+          <div class="result-icon ${iconClass}">${iconSvg}</div>
+          <div class="result-content">
+            <h3>${titleText}</h3>
+            <p>${descText}</p>
+            <div class="probability-grid">
+              <div class="prob-item">
+                <span class="prob-label">Phishing</span>
+                <span class="prob-value phishing">${result.probabilities.phishing.toFixed(2)}%</span>
+              </div>
+              <div class="prob-item">
+                <span class="prob-label">Legitimate</span>
+                <span class="prob-value legitimate">${result.probabilities.legitimate.toFixed(2)}%</span>
+              </div>
+            </div>
+          </div>
+          <div class="result-meta">
+            <div class="meta-row">
+              <span>Model Confidence</span>
+              <b>${result.confidence.toFixed(2)}%</b>
+            </div>
+            <div class="confidence-bar-wrap">
+              <div class="confidence-bar-fill ${fillClass}" style="width: ${result.confidence}%"></div>
+            </div>
+          </div>
+        `;
+        resultsSection.insertBefore(card, resultsSection.querySelector(".results-disclaimer"));
+
+        // Update results status badge
+        resultsStatus.textContent = statusText;
+        resultsStatus.className = `results-status ${statusClass}`;
+        resultsStatus.innerHTML = `<span></span> ${statusText}`;
+      };
+
+      // Render error state
+      const renderError = (errorMessage) => {
+        resultsEmpty.style.display = "none";
+
+        // Remove any existing result card
+        const existingCard = resultsSection.querySelector(".result-card");
+        if (existingCard) existingCard.remove();
+
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
+          <div class="result-icon phishing">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="20.5" cy="20.5" r="12.5" stroke="currentColor" stroke-width="1.7"/><path d="m30 30 9 9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15.5 20.5h10M20.5 15.5v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="result-content">
+            <h3>Scan Error</h3>
+            <p>${errorMessage}</p>
+          </div>
+          <div class="result-meta"></div>
+        `;
+        resultsSection.insertBefore(card, resultsSection.querySelector(".results-disclaimer"));
+
+        resultsStatus.textContent = "ERROR";
+        resultsStatus.className = "results-status is-error";
+        resultsStatus.innerHTML = `<span></span> ERROR`;
+      };
+
+      // Render empty/initial state
+      const renderEmpty = () => {
+        const existingCard = resultsSection.querySelector(".result-card");
+        if (existingCard) existingCard.remove();
+        resultsEmpty.style.display = "grid";
+        resultsStatus.textContent = "READY TO ANALYZE";
+        resultsStatus.className = "results-status";
+        resultsStatus.innerHTML = `<span></span> READY TO ANALYZE`;
+      };
+
+      // Receive result from Python via Streamlit props
+      Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, (e) => {
+        const args = e.detail.args;
+        if (args && args.result) {
+          if (args.result.error) {
+            renderError(args.result.error);
+          } else {
+            renderResult(args.result);
+          }
+        } else if (args && args.result === null) {
+          // Explicit null means clear to empty
+          renderEmpty();
+        }
+        // Scroll to results
+        resultsSection.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "center" });
+      });
+
+      // Form submit -> send to Python
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (isScanning) return;
+
+        const raw = input.value.trim();
+        if (!raw || !urlPattern.test(raw)) {
+          setPillStatus("error", "Enter a valid website URL, such as https://example.com.");
+          input.focus();
+          return;
+        }
+
+        let normalized = raw;
+        if (!/^https?:\/\//i.test(normalized)) normalized = "https://" + normalized;
+        input.value = normalized;
+
+        // Send scan request to Python with unique request ID
+        const requestId = ++lastRequestId;
+        isScanning = true;
+        btn.disabled = true;
+        btn.innerHTML = '<span>Scanning...</span><span aria-hidden="true">⏳</span>';
+
+        Streamlit.setComponentValue({
+          action: "scan",
+          url: normalized,
+          requestId: requestId
+        });
+      });
+
+      // Clear pill status on input
+      input.addEventListener("input", () => {
+        clearPillStatus();
+      });
+    </script>
+  </body>
+</html>

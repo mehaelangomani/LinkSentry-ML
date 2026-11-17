@@ -1,0 +1,101 @@
+url,expected_label,source,verification_status,split,notes
+https://www.google.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.google.com/search?q=weather,legitimate,published public web address,not_fetched_published_address,primary,query on a public search page. Page was not requested.
+https://maps.google.com,legitimate,published public web address,not_fetched_published_address,primary,public subdomain. Page was not requested.
+https://accounts.google.com,legitimate,published public web address,not_fetched_published_address,primary,"real account host, not a lookalike. Page was not requested."
+https://drive.google.com,legitimate,published public web address,not_fetched_published_address,primary,public product subdomain. Page was not requested.
+https://web.whatsapp.com,legitimate,published public web address,not_fetched_published_address,primary,real product subdomain without www. Page was not requested.
+https://www.whatsapp.com,legitimate,published public web address,not_fetched_published_address,primary,brand homepage with www. Page was not requested.
+https://github.com,legitimate,published public web address,not_fetched_published_address,primary,homepage without www. Page was not requested.
+https://github.com/python/cpython,legitimate,published public web address,not_fetched_published_address,primary,public repository path. Page was not requested.
+https://www.microsoft.com,legitimate,published public web address,not_fetched_published_address,primary,homepage with www. Page was not requested.
+https://learn.microsoft.com/en-us/windows/,legitimate,published public web address,not_fetched_published_address,primary,public docs path. Page was not requested.
+https://login.microsoftonline.com,legitimate,published public web address,not_fetched_published_address,primary,real Microsoft login host. Page was not requested.
+https://www.wikipedia.org,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://en.wikipedia.org/wiki/Phishing,legitimate,published public web address,not_fetched_published_address,primary,public article path. Page was not requested.
+https://www.python.org,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://docs.python.org/3/library/urllib.parse.html,legitimate,published public web address,not_fetched_published_address,primary,public docs path. Page was not requested.
+https://pypi.org/project/pip/,legitimate,published public web address,not_fetched_published_address,primary,public package path. Page was not requested.
+https://www.mozilla.org,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://developer.mozilla.org/en-US/docs/Web/HTTP,legitimate,published public web address,not_fetched_published_address,primary,public docs path. Page was not requested.
+http://neverssl.com,legitimate,published public web address,not_fetched_published_address,primary,published HTTP-only connectivity check. Page was not requested.
+http://info.cern.ch/hypertext/WWW/TheProject.html,legitimate,published public web address,not_fetched_published_address,primary,published historical HTTP page. Page was not requested.
+https://www.w3.org/TR/url/,legitimate,published public web address,not_fetched_published_address,primary,public specification path. Page was not requested.
+https://www.rfc-editor.org/rfc/rfc3986,legitimate,published public web address,not_fetched_published_address,primary,public RFC path. Page was not requested.
+https://www.cloudflare.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://blog.cloudflare.com,legitimate,published public web address,not_fetched_published_address,primary,public blog subdomain. Page was not requested.
+https://www.apple.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://support.apple.com/en-us,legitimate,published public web address,not_fetched_published_address,primary,public support path. Page was not requested.
+https://www.amazon.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.bbc.com/news,legitimate,published public web address,not_fetched_published_address,primary,public news path. Page was not requested.
+https://www.nytimes.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://stackoverflow.com/questions,legitimate,published public web address,not_fetched_published_address,primary,public path. Page was not requested.
+https://news.ycombinator.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://arxiv.org/abs/1701.06234,legitimate,published public web address,not_fetched_published_address,primary,public paper path. Page was not requested.
+https://www.nature.com,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.un.org,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.who.int,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.nasa.gov,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.irs.gov,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.gov.uk,legitimate,published public web address,not_fetched_published_address,primary,homepage. Page was not requested.
+https://www.rust-lang.org,legitimate,published public web address,not_fetched_published_address,primary,homepage with hyphen. Page was not requested.
+https://www.npmjs.com/package/react,legitimate,published public web address,not_fetched_published_address,primary,public package path. Page was not requested.
+https://cdn.jsdelivr.net/npm/react/package.json,legitimate,published public web address,not_fetched_published_address,primary,public CDN object path. Page was not requested.
+https://ftp.gnu.org/gnu/,legitimate,published public web address,not_fetched_published_address,primary,public archive path. Page was not requested.
+https://old.reddit.com,legitimate,published public web address,not_fetched_published_address,primary,public alternate subdomain. Page was not requested.
+https://outlook.live.com,legitimate,published public web address,not_fetched_published_address,primary,real Microsoft webmail host. Page was not requested.
+https://www.youtube.com/watch?v=jNQXAC9IVRw,legitimate,published public web address,not_fetched_published_address,primary,public video query. Page was not requested.
+https://www.iana.org/domains,legitimate,published public web address,not_fetched_published_address,primary,public path. Page was not requested.
+https://www.cloudflare.com/learning/dns/what-is-dns/,legitimate,published public web address,not_fetched_published_address,primary,public article path. Page was not requested.
+https://en.wikipedia.org/wiki/URL?useskin=vector,legitimate,published public web address,not_fetched_published_address,primary,public article with query. Page was not requested.
+https://www.microsoft.com/en-us/windows,legitimate,published public web address,not_fetched_published_address,primary,public product path. Page was not requested.
+http://megashorkxturtle.github.io/Netflix__clone,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, path."
+https://store.workshopcommunitybrowse.com/sharedfiles/filesdetails/id=3832495514/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path."
+https://eepoint.wtwco.us/ess/bnpp/Login/Index,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, keyword."
+http://cryptocomappstillcantlogin.netlify.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, keyword."
+http://netflix-abonnement.com/success.php,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, path, hyphen."
+https://susannesousadasilva.github.io/Supplies,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path."
+http://php-membr.wasmer.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen, short."
+http://conatem.com/adobeStudio.html,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, path."
+http://hub-open-bxnm.p-xxorevv8.workers.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+http://www.wwrreret264758.weebly.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain."
+https://ra-krxu.vercel.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, hyphen, short."
+https://kucinonlogen.gitbook.io/us,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path."
+http://verifynownow.webflow.io/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, keyword."
+https://metxmsaklogan.gitbook.io/us,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path."
+http://plenor-qudrik-f27ab5-thjj-z2406ach.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+http://databaseserver-sigma.vercel.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+http://eng-upholld-en.square.site/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+https://roblox.com.gr/users/757568109566/profile,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path."
+http://binance3.github.io/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, short."
+https://rbx.tg/pAynW-c7,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, short."
+http://cryptocomultlogin.netlify.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, keyword."
+https://shopee60.blogspot.com/?m=1,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, query."
+https://gebyarundian-shopee2019.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, hyphen."
+http://www.pemenang-shopee47.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+http://playful-sprinkles-2c0855.netlify.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+https://m6i1n.top/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, short."
+http://mrhemanth2002.github.io/netflix-clone,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, path."
+https://yt7566trtrr.blogspot.com/?m=1,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, query."
+https://fofwn-db1-f41h-z785d-18-09-2026-hh.pages.dev/send_appeal_request,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, hyphen."
+https://odd-lab-f930.xqnrclhhevjgnwr.workers.dev/facebook.com-1024553743,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, hyphen."
+https://apple-store-woad-delta.vercel.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, hyphen."
+https://xelqelo-mpt-zunvani-a5x7ka63.pages.dev/send_appeal_request,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, hyphen."
+https://sunyimembara.tepaksunda.menjadidua.srcone.62-171-154-219.cpanel.site/secure-3/loginbaru?auth_max_open=0&ref=t2uYG6w8nFso7KVvReRIONdzmIJtA8xLnSm8GdljV15BVEKiAEJTqq72OceaQLu6cvIndJxqY4RIHZttpIMzC9TJDj5L020ErIWI,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, query, hyphen, keyword, long."
+https://atron-solutions.com/RKS/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, hyphen."
+https://tr.ee/7DNq6j,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, short."
+https://cabletu-mrsm.com.mx/POPis/?gate=6566,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, query, hyphen."
+https://usa-icloud.com/signin/identifier?_g=tom7gh.a6b8770f2284,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, query, hyphen, keyword."
+https://web-icloud.com/signin/identifier?_g=tom7gh.a6b8770f2284,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, query, hyphen, keyword."
+https://webtraining.sviluppo.host/?LOG=0ae740a112ec7633a403a9ff82b374a6e609bbb73bc67d8af1381f5cfbfa4a0c,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, query, long."
+https://clhak4cpr6wkmnc6.chasincocktails.com/OUTre/index.php#mCljCtG70JTZgsHY=cGFiYWkxOTY5QGhvdG1haWwuY29t,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, long."
+https://roblox.com.bz/games/82205993156224/Walk-10000-Stairs-for-Neko-Girl?privateServerLinkCode=01763772834170954578562896236934,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path, query, long."
+https://is.gd/hQodXq,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, short."
+http://thrshopee155.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain."
+https://security-server-stat-kng4.bolt.host/#phishing-dpdhl@dhl.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, hyphen."
+http://amogh-jani.github.io/spotify-clone,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, path, hyphen."
+https://wvvw-rloblox.com/users/1745849894/profile,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, path, hyphen."
+http://bundleid-metaplex-signtx.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, hyphen."
+https://www.roblox.com.et/users/2717531752/profile,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, path."
+http://trezrhiwanlt.gitbook.io/us,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: http, subdomain, path."
+https://ihwln-vq2-k6f7-af63p-18-09-2026-hh.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,primary,"Not visited. Structural tags: https, subdomain, hyphen."

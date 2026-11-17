@@ -1,0 +1,2263 @@
+{
+  "label_maps": {
+    "phiusiil": {
+      "0": "phishing",
+      "1": "legitimate"
+    },
+    "ealvaradob": {
+      "0": "legitimate",
+      "1": "phishing"
+    }
+  },
+  "threshold_rule": {
+    "candidates": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "predict_phishing_when": "P(phishing) >= threshold",
+    "constraint": "validation recall >= 0.85 and within 0.05 of the 0.50 recall",
+    "objective": "lowest validation false-positive rate, then higher F1, then lower threshold"
+  },
+  "models": {
+    "phiusiil": {
+      "validation_threshold": {
+        "threshold": 0.95,
+        "reason": "lowest validation false-positive rate subject to the recall constraint",
+        "validation_curve": [
+          {
+            "threshold": 0.5,
+            "n": 81,
+            "accuracy": 0.5308641975308642,
+            "precision_phishing": 0.5189873417721519,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6833333333333332,
+            "false_positive_rate": 0.95,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 38,
+            "tn": 2
+          },
+          {
+            "threshold": 0.55,
+            "n": 81,
+            "accuracy": 0.5432098765432098,
+            "precision_phishing": 0.5256410256410257,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.689075630252101,
+            "false_positive_rate": 0.925,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 37,
+            "tn": 3
+          },
+          {
+            "threshold": 0.6,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.65,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.7,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.75,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.8,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.85,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.9,
+            "n": 81,
+            "accuracy": 0.5555555555555556,
+            "precision_phishing": 0.5324675324675324,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.6949152542372882,
+            "false_positive_rate": 0.9,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 36,
+            "tn": 4
+          },
+          {
+            "threshold": 0.95,
+            "n": 81,
+            "accuracy": 0.5679012345679012,
+            "precision_phishing": 0.5394736842105263,
+            "recall_phishing": 1.0,
+            "f1_phishing": 0.7008547008547009,
+            "false_positive_rate": 0.875,
+            "false_negative_rate": 0.0,
+            "tp": 41,
+            "fn": 0,
+            "fp": 35,
+            "tn": 5
+          }
+        ],
+        "validation_at_threshold": {
+          "n": 81,
+          "accuracy": 0.5679012345679012,
+          "precision_phishing": 0.5394736842105263,
+          "recall_phishing": 1.0,
+          "f1_phishing": 0.7008547008547009,
+          "false_positive_rate": 0.875,
+          "false_negative_rate": 0.0,
+          "tp": 41,
+          "fn": 0,
+          "fp": 35,
+          "tn": 5
+        }
+      },
+      "test_at_0_50": {
+        "n": 79,
+        "accuracy": 0.5189873417721519,
+        "precision_phishing": 0.5064935064935064,
+        "recall_phishing": 1.0,
+        "f1_phishing": 0.6724137931034482,
+        "false_positive_rate": 0.95,
+        "false_negative_rate": 0.0,
+        "tp": 39,
+        "fn": 0,
+        "fp": 38,
+        "tn": 2
+      },
+      "test_at_validation_threshold": {
+        "n": 79,
+        "accuracy": 0.5569620253164557,
+        "precision_phishing": 0.527027027027027,
+        "recall_phishing": 1.0,
+        "f1_phishing": 0.6902654867256637,
+        "false_positive_rate": 0.875,
+        "false_negative_rate": 0.0,
+        "tp": 39,
+        "fn": 0,
+        "fp": 35,
+        "tn": 5
+      },
+      "test_errors_at_0_50": [
+        {
+          "url": "https://login.yahoo.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9855,
+          "p_legitimate": 0.0145
+        },
+        {
+          "url": "https://signin.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://login.salesforce.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9853,
+          "p_legitimate": 0.0147
+        },
+        {
+          "url": "https://login.live.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://discord.com/login",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://store.steampowered.com/login/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9853,
+          "p_legitimate": 0.0147
+        },
+        {
+          "url": "https://www.paypal.com/signin",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9847,
+          "p_legitimate": 0.0153
+        },
+        {
+          "url": "https://www.facebook.com/login/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://open.spotify.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://translate.google.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://scholar.google.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://m.wikipedia.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://en.wiktionary.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9841,
+          "p_legitimate": 0.0159
+        },
+        {
+          "url": "https://status.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://music.apple.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://outlook.office.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9853,
+          "p_legitimate": 0.0147
+        },
+        {
+          "url": "https://www.theguardian.com/international",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.8278,
+          "p_legitimate": 0.1722
+        },
+        {
+          "url": "https://www.nist.gov/cybersecurity",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9584,
+          "p_legitimate": 0.0416
+        },
+        {
+          "url": "https://pandas.pydata.org/docs/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://www.postgresql.org/docs/current/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9844,
+          "p_legitimate": 0.0156
+        },
+        {
+          "url": "https://docs.docker.com/get-started/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://httpd.apache.org/docs/current/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://www.kernel.org/doc/html/latest/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://go.dev/doc/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9854,
+          "p_legitimate": 0.0146
+        },
+        {
+          "url": "https://duckduckgo.com/?q=weather",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9845,
+          "p_legitimate": 0.0155
+        },
+        {
+          "url": "https://www.wikidata.org/w/index.php?search=URL",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9838,
+          "p_legitimate": 0.0162
+        },
+        {
+          "url": "https://www.imdb.com/find/?q=matrix",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9677,
+          "p_legitimate": 0.0323
+        },
+        {
+          "url": "https://www.gutenberg.org/ebooks/search/?query=science",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9395,
+          "p_legitimate": 0.0605
+        },
+        {
+          "url": "https://8.8.8.8/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://9.9.9.9/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://tinyurl.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "shortener",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://docs.docker.com/engine/reference/commandline/run/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "long",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "long",
+          "p_phishing": 0.9841,
+          "p_legitimate": 0.0159
+        },
+        {
+          "url": "https://www.ftc.gov/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.5276,
+          "p_legitimate": 0.4724
+        },
+        {
+          "url": "https://commission.europa.eu/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9848,
+          "p_legitimate": 0.0152
+        },
+        {
+          "url": "https://datatracker.ietf.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://pytorch.org/docs/stable/index.html",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://docs.rs/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        }
+      ],
+      "test_errors_at_validation_threshold": [
+        {
+          "url": "https://login.yahoo.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9855,
+          "p_legitimate": 0.0145
+        },
+        {
+          "url": "https://signin.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://login.salesforce.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9853,
+          "p_legitimate": 0.0147
+        },
+        {
+          "url": "https://login.live.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://discord.com/login",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://store.steampowered.com/login/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9853,
+          "p_legitimate": 0.0147
+        },
+        {
+          "url": "https://www.paypal.com/signin",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9847,
+          "p_legitimate": 0.0153
+        },
+        {
+          "url": "https://www.facebook.com/login/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://open.spotify.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://translate.google.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://scholar.google.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://m.wikipedia.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://en.wiktionary.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9841,
+          "p_legitimate": 0.0159
+        },
+        {
+          "url": "https://status.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149
+        },
+        {
+          "url": "https://music.apple.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://outlook.office.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9853,
+          "p_legitimate": 0.0147
+        },
+        {
+          "url": "https://www.nist.gov/cybersecurity",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9584,
+          "p_legitimate": 0.0416
+        },
+        {
+          "url": "https://pandas.pydata.org/docs/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://www.postgresql.org/docs/current/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9844,
+          "p_legitimate": 0.0156
+        },
+        {
+          "url": "https://docs.docker.com/get-started/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://httpd.apache.org/docs/current/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://www.kernel.org/doc/html/latest/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://go.dev/doc/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "path",
+          "p_phishing": 0.9854,
+          "p_legitimate": 0.0146
+        },
+        {
+          "url": "https://duckduckgo.com/?q=weather",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9845,
+          "p_legitimate": 0.0155
+        },
+        {
+          "url": "https://www.wikidata.org/w/index.php?search=URL",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9838,
+          "p_legitimate": 0.0162
+        },
+        {
+          "url": "https://www.imdb.com/find/?q=matrix",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "query",
+          "p_phishing": 0.9677,
+          "p_legitimate": 0.0323
+        },
+        {
+          "url": "https://8.8.8.8/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://9.9.9.9/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://tinyurl.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "shortener",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://docs.docker.com/engine/reference/commandline/run/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "long",
+          "p_phishing": 0.9849,
+          "p_legitimate": 0.0151
+        },
+        {
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "long",
+          "p_phishing": 0.9841,
+          "p_legitimate": 0.0159
+        },
+        {
+          "url": "https://commission.europa.eu/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9848,
+          "p_legitimate": 0.0152
+        },
+        {
+          "url": "https://datatracker.ietf.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        },
+        {
+          "url": "https://pytorch.org/docs/stable/index.html",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.985,
+          "p_legitimate": 0.015
+        },
+        {
+          "url": "https://docs.rs/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148
+        }
+      ],
+      "test_categories_at_0_50": {
+        "legitimate:homepage": {
+          "n": 6,
+          "accuracy": 0.16666666666666666,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.8333333333333334,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 5,
+          "tn": 1
+        },
+        "legitimate:ip": {
+          "n": 2,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 2,
+          "tn": 0
+        },
+        "legitimate:login": {
+          "n": 8,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 8,
+          "tn": 0
+        },
+        "legitimate:long": {
+          "n": 2,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 2,
+          "tn": 0
+        },
+        "legitimate:path": {
+          "n": 8,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 8,
+          "tn": 0
+        },
+        "legitimate:query": {
+          "n": 5,
+          "accuracy": 0.2,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.8,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 4,
+          "tn": 1
+        },
+        "legitimate:shortener": {
+          "n": 1,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 1,
+          "tn": 0
+        },
+        "legitimate:subdomain": {
+          "n": 8,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 8,
+          "tn": 0
+        },
+        "phishing:http": {
+          "n": 6,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 6,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:https": {
+          "n": 2,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:long": {
+          "n": 4,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 4,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:lookalike": {
+          "n": 5,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 5,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:path": {
+          "n": 8,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 8,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:query": {
+          "n": 4,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 4,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:shortener": {
+          "n": 1,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:subdomain": {
+          "n": 9,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 9,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        }
+      },
+      "confidence_at_0_50": {
+        "correct_p_predicted_class": {
+          "n": 41,
+          "min": 0.5277137756347656,
+          "median": 0.9852295517921448,
+          "mean": 0.9708863656695296,
+          "max": 0.9856876730918884,
+          "below_0_70": 1,
+          "at_least_0_90": 39,
+          "at_least_0_98": 39
+        },
+        "false_positive_p_phishing": {
+          "n": 38,
+          "min": 0.5276450514793396,
+          "median": 0.9849969148635864,
+          "mean": 0.9664455652236938,
+          "max": 0.9855135083198547,
+          "below_0_70": 1,
+          "at_least_0_90": 36,
+          "at_least_0_98": 33
+        },
+        "false_negative_p_legitimate": {
+          "n": 0
+        }
+      },
+      "synthetic_not_in_verified_metrics": [
+        {
+          "url": "http://docs.github.com/",
+          "expected_label": "legitimate",
+          "verification_status": "synthetic_scheme_variant",
+          "p_phishing": 0.9854,
+          "p_legitimate": 0.0146,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://www.docs.github.com/",
+          "expected_label": "legitimate",
+          "verification_status": "synthetic_www_variant",
+          "p_phishing": 0.4228,
+          "p_legitimate": 0.5772,
+          "predicted_at_0_50": "legitimate"
+        },
+        {
+          "url": "https://paypal.example.com/login",
+          "expected_label": "synthetic_lookalike",
+          "verification_status": "synthetic_reserved_domain",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://accounts.google.example.com/",
+          "expected_label": "synthetic_lookalike",
+          "verification_status": "synthetic_reserved_domain",
+          "p_phishing": 0.9851,
+          "p_legitimate": 0.0149,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://github.com.example.net/login",
+          "expected_label": "synthetic_lookalike",
+          "verification_status": "synthetic_reserved_domain",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "http://192.0.2.1/login",
+          "expected_label": "synthetic_ip_probe",
+          "verification_status": "synthetic_documentation_range",
+          "p_phishing": 0.9854,
+          "p_legitimate": 0.0146,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://203.0.113.10/secure/update?redirect=account",
+          "expected_label": "synthetic_ip_probe",
+          "verification_status": "synthetic_documentation_range",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://bitly.com/3example",
+          "expected_label": "synthetic_short_link",
+          "verification_status": "synthetic_unresolved_short_link",
+          "p_phishing": 0.9852,
+          "p_legitimate": 0.0148,
+          "predicted_at_0_50": "phishing"
+        }
+      ],
+      "test_any_truncated": false,
+      "test_max_tokens": 169
+    },
+    "ealvaradob": {
+      "validation_threshold": {
+        "threshold": 0.65,
+        "reason": "lowest validation false-positive rate subject to the recall constraint",
+        "validation_curve": [
+          {
+            "threshold": 0.5,
+            "n": 81,
+            "accuracy": 0.9506172839506173,
+            "precision_phishing": 0.9512195121951219,
+            "recall_phishing": 0.9512195121951219,
+            "f1_phishing": 0.9512195121951219,
+            "false_positive_rate": 0.05,
+            "false_negative_rate": 0.04878048780487805,
+            "tp": 39,
+            "fn": 2,
+            "fp": 2,
+            "tn": 38
+          },
+          {
+            "threshold": 0.55,
+            "n": 81,
+            "accuracy": 0.9506172839506173,
+            "precision_phishing": 0.9512195121951219,
+            "recall_phishing": 0.9512195121951219,
+            "f1_phishing": 0.9512195121951219,
+            "false_positive_rate": 0.05,
+            "false_negative_rate": 0.04878048780487805,
+            "tp": 39,
+            "fn": 2,
+            "fp": 2,
+            "tn": 38
+          },
+          {
+            "threshold": 0.6,
+            "n": 81,
+            "accuracy": 0.9506172839506173,
+            "precision_phishing": 0.9512195121951219,
+            "recall_phishing": 0.9512195121951219,
+            "f1_phishing": 0.9512195121951219,
+            "false_positive_rate": 0.05,
+            "false_negative_rate": 0.04878048780487805,
+            "tp": 39,
+            "fn": 2,
+            "fp": 2,
+            "tn": 38
+          },
+          {
+            "threshold": 0.65,
+            "n": 81,
+            "accuracy": 0.9382716049382716,
+            "precision_phishing": 0.9736842105263158,
+            "recall_phishing": 0.9024390243902439,
+            "f1_phishing": 0.9367088607594938,
+            "false_positive_rate": 0.025,
+            "false_negative_rate": 0.0975609756097561,
+            "tp": 37,
+            "fn": 4,
+            "fp": 1,
+            "tn": 39
+          },
+          {
+            "threshold": 0.7,
+            "n": 81,
+            "accuracy": 0.9382716049382716,
+            "precision_phishing": 0.9736842105263158,
+            "recall_phishing": 0.9024390243902439,
+            "f1_phishing": 0.9367088607594938,
+            "false_positive_rate": 0.025,
+            "false_negative_rate": 0.0975609756097561,
+            "tp": 37,
+            "fn": 4,
+            "fp": 1,
+            "tn": 39
+          },
+          {
+            "threshold": 0.75,
+            "n": 81,
+            "accuracy": 0.9259259259259259,
+            "precision_phishing": 0.972972972972973,
+            "recall_phishing": 0.8780487804878049,
+            "f1_phishing": 0.923076923076923,
+            "false_positive_rate": 0.025,
+            "false_negative_rate": 0.12195121951219512,
+            "tp": 36,
+            "fn": 5,
+            "fp": 1,
+            "tn": 39
+          },
+          {
+            "threshold": 0.8,
+            "n": 81,
+            "accuracy": 0.9259259259259259,
+            "precision_phishing": 0.972972972972973,
+            "recall_phishing": 0.8780487804878049,
+            "f1_phishing": 0.923076923076923,
+            "false_positive_rate": 0.025,
+            "false_negative_rate": 0.12195121951219512,
+            "tp": 36,
+            "fn": 5,
+            "fp": 1,
+            "tn": 39
+          },
+          {
+            "threshold": 0.85,
+            "n": 81,
+            "accuracy": 0.9259259259259259,
+            "precision_phishing": 0.972972972972973,
+            "recall_phishing": 0.8780487804878049,
+            "f1_phishing": 0.923076923076923,
+            "false_positive_rate": 0.025,
+            "false_negative_rate": 0.12195121951219512,
+            "tp": 36,
+            "fn": 5,
+            "fp": 1,
+            "tn": 39
+          },
+          {
+            "threshold": 0.9,
+            "n": 81,
+            "accuracy": 0.9259259259259259,
+            "precision_phishing": 0.972972972972973,
+            "recall_phishing": 0.8780487804878049,
+            "f1_phishing": 0.923076923076923,
+            "false_positive_rate": 0.025,
+            "false_negative_rate": 0.12195121951219512,
+            "tp": 36,
+            "fn": 5,
+            "fp": 1,
+            "tn": 39
+          },
+          {
+            "threshold": 0.95,
+            "n": 81,
+            "accuracy": 0.9135802469135802,
+            "precision_phishing": 1.0,
+            "recall_phishing": 0.8292682926829268,
+            "f1_phishing": 0.9066666666666667,
+            "false_positive_rate": 0.0,
+            "false_negative_rate": 0.17073170731707318,
+            "tp": 34,
+            "fn": 7,
+            "fp": 0,
+            "tn": 40
+          }
+        ],
+        "validation_at_threshold": {
+          "n": 81,
+          "accuracy": 0.9382716049382716,
+          "precision_phishing": 0.9736842105263158,
+          "recall_phishing": 0.9024390243902439,
+          "f1_phishing": 0.9367088607594938,
+          "false_positive_rate": 0.025,
+          "false_negative_rate": 0.0975609756097561,
+          "tp": 37,
+          "fn": 4,
+          "fp": 1,
+          "tn": 39
+        }
+      },
+      "test_at_0_50": {
+        "n": 79,
+        "accuracy": 0.8734177215189873,
+        "precision_phishing": 0.8717948717948718,
+        "recall_phishing": 0.8717948717948718,
+        "f1_phishing": 0.8717948717948718,
+        "false_positive_rate": 0.125,
+        "false_negative_rate": 0.1282051282051282,
+        "tp": 34,
+        "fn": 5,
+        "fp": 5,
+        "tn": 35
+      },
+      "test_at_validation_threshold": {
+        "n": 79,
+        "accuracy": 0.8734177215189873,
+        "precision_phishing": 0.8717948717948718,
+        "recall_phishing": 0.8717948717948718,
+        "f1_phishing": 0.8717948717948718,
+        "false_positive_rate": 0.125,
+        "false_negative_rate": 0.1282051282051282,
+        "tp": 34,
+        "fn": 5,
+        "fp": 5,
+        "tn": 35
+      },
+      "test_errors_at_0_50": [
+        {
+          "url": "https://signin.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9742,
+          "p_legitimate": 0.0258
+        },
+        {
+          "url": "https://status.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9839,
+          "p_legitimate": 0.0161
+        },
+        {
+          "url": "https://8.8.8.8/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.9809,
+          "p_legitimate": 0.0191
+        },
+        {
+          "url": "https://9.9.9.9/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.8704,
+          "p_legitimate": 0.1296
+        },
+        {
+          "url": "https://datatracker.ietf.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9511,
+          "p_legitimate": 0.0489
+        },
+        {
+          "url": "http://pulsebux.com/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "http",
+          "p_phishing": 0.3803,
+          "p_legitimate": 0.6197
+        },
+        {
+          "url": "http://www.bradescoempresabanking.com/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "http",
+          "p_phishing": 0.3306,
+          "p_legitimate": 0.6694
+        },
+        {
+          "url": "http://www.infoundianshopee31.blogspot.com/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "http",
+          "p_phishing": 0.0518,
+          "p_legitimate": 0.9482
+        },
+        {
+          "url": "https://roblox.com.gr/games/122446657157717/CASE-UPDATE-Sniper-Arena?privateServerLinkCode=26676135374151735703107772519650&game_id=122446657157717&game_name=CASE-UPDATE-Sniper-Arena",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "long",
+          "p_phishing": 0.0436,
+          "p_legitimate": 0.9564
+        },
+        {
+          "url": "https://achiit.github.io/dukaan-is-hh/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "lookalike",
+          "p_phishing": 0.1505,
+          "p_legitimate": 0.8495
+        }
+      ],
+      "test_errors_at_validation_threshold": [
+        {
+          "url": "https://signin.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "login",
+          "p_phishing": 0.9742,
+          "p_legitimate": 0.0258
+        },
+        {
+          "url": "https://status.aws.amazon.com/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "subdomain",
+          "p_phishing": 0.9839,
+          "p_legitimate": 0.0161
+        },
+        {
+          "url": "https://8.8.8.8/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.9809,
+          "p_legitimate": 0.0191
+        },
+        {
+          "url": "https://9.9.9.9/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "ip",
+          "p_phishing": 0.8704,
+          "p_legitimate": 0.1296
+        },
+        {
+          "url": "https://datatracker.ietf.org/",
+          "expected_label": "legitimate",
+          "predicted_label": "phishing",
+          "category": "homepage",
+          "p_phishing": 0.9511,
+          "p_legitimate": 0.0489
+        },
+        {
+          "url": "http://pulsebux.com/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "http",
+          "p_phishing": 0.3803,
+          "p_legitimate": 0.6197
+        },
+        {
+          "url": "http://www.bradescoempresabanking.com/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "http",
+          "p_phishing": 0.3306,
+          "p_legitimate": 0.6694
+        },
+        {
+          "url": "http://www.infoundianshopee31.blogspot.com/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "http",
+          "p_phishing": 0.0518,
+          "p_legitimate": 0.9482
+        },
+        {
+          "url": "https://roblox.com.gr/games/122446657157717/CASE-UPDATE-Sniper-Arena?privateServerLinkCode=26676135374151735703107772519650&game_id=122446657157717&game_name=CASE-UPDATE-Sniper-Arena",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "long",
+          "p_phishing": 0.0436,
+          "p_legitimate": 0.9564
+        },
+        {
+          "url": "https://achiit.github.io/dukaan-is-hh/",
+          "expected_label": "phishing",
+          "predicted_label": "legitimate",
+          "category": "lookalike",
+          "p_phishing": 0.1505,
+          "p_legitimate": 0.8495
+        }
+      ],
+      "test_categories_at_0_50": {
+        "legitimate:homepage": {
+          "n": 6,
+          "accuracy": 0.8333333333333334,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.16666666666666666,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 1,
+          "tn": 5
+        },
+        "legitimate:ip": {
+          "n": 2,
+          "accuracy": 0.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 2,
+          "tn": 0
+        },
+        "legitimate:login": {
+          "n": 8,
+          "accuracy": 0.875,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.125,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 1,
+          "tn": 7
+        },
+        "legitimate:long": {
+          "n": 2,
+          "accuracy": 1.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 2
+        },
+        "legitimate:path": {
+          "n": 8,
+          "accuracy": 1.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 8
+        },
+        "legitimate:query": {
+          "n": 5,
+          "accuracy": 1.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 5
+        },
+        "legitimate:shortener": {
+          "n": 1,
+          "accuracy": 1.0,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 0,
+          "tn": 1
+        },
+        "legitimate:subdomain": {
+          "n": 8,
+          "accuracy": 0.875,
+          "precision_phishing": 0.0,
+          "recall_phishing": 0.0,
+          "f1_phishing": 0.0,
+          "false_positive_rate": 0.125,
+          "false_negative_rate": 0.0,
+          "tp": 0,
+          "fn": 0,
+          "fp": 1,
+          "tn": 7
+        },
+        "phishing:http": {
+          "n": 6,
+          "accuracy": 0.5,
+          "precision_phishing": 1.0,
+          "recall_phishing": 0.5,
+          "f1_phishing": 0.6666666666666666,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.5,
+          "tp": 3,
+          "fn": 3,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:https": {
+          "n": 2,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 2,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:long": {
+          "n": 4,
+          "accuracy": 0.75,
+          "precision_phishing": 1.0,
+          "recall_phishing": 0.75,
+          "f1_phishing": 0.8571428571428571,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.25,
+          "tp": 3,
+          "fn": 1,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:lookalike": {
+          "n": 5,
+          "accuracy": 0.8,
+          "precision_phishing": 1.0,
+          "recall_phishing": 0.8,
+          "f1_phishing": 0.888888888888889,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.2,
+          "tp": 4,
+          "fn": 1,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:path": {
+          "n": 8,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 8,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:query": {
+          "n": 4,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 4,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:shortener": {
+          "n": 1,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 1,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        },
+        "phishing:subdomain": {
+          "n": 9,
+          "accuracy": 1.0,
+          "precision_phishing": 1.0,
+          "recall_phishing": 1.0,
+          "f1_phishing": 1.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "tp": 9,
+          "fn": 0,
+          "fp": 0,
+          "tn": 0
+        }
+      },
+      "confidence_at_0_50": {
+        "correct_p_predicted_class": {
+          "n": 69,
+          "min": 0.6628496646881104,
+          "median": 0.9834281802177429,
+          "mean": 0.9597720581552257,
+          "max": 0.9863074421882629,
+          "below_0_70": 1,
+          "at_least_0_90": 61,
+          "at_least_0_98": 46
+        },
+        "false_positive_p_phishing": {
+          "n": 5,
+          "min": 0.8704175353050232,
+          "median": 0.9742460250854492,
+          "mean": 0.9521301507949829,
+          "max": 0.983925461769104,
+          "below_0_70": 0,
+          "at_least_0_90": 4,
+          "at_least_0_98": 2
+        },
+        "false_negative_p_legitimate": {
+          "n": 5,
+          "min": 0.6197324395179749,
+          "median": 0.8494917750358582,
+          "mean": 0.8086661338806153,
+          "max": 0.956437885761261,
+          "below_0_70": 2,
+          "at_least_0_90": 2,
+          "at_least_0_98": 0
+        }
+      },
+      "synthetic_not_in_verified_metrics": [
+        {
+          "url": "http://docs.github.com/",
+          "expected_label": "legitimate",
+          "verification_status": "synthetic_scheme_variant",
+          "p_phishing": 0.095,
+          "p_legitimate": 0.905,
+          "predicted_at_0_50": "legitimate"
+        },
+        {
+          "url": "https://www.docs.github.com/",
+          "expected_label": "legitimate",
+          "verification_status": "synthetic_www_variant",
+          "p_phishing": 0.0227,
+          "p_legitimate": 0.9773,
+          "predicted_at_0_50": "legitimate"
+        },
+        {
+          "url": "https://paypal.example.com/login",
+          "expected_label": "synthetic_lookalike",
+          "verification_status": "synthetic_reserved_domain",
+          "p_phishing": 0.5699,
+          "p_legitimate": 0.4301,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://accounts.google.example.com/",
+          "expected_label": "synthetic_lookalike",
+          "verification_status": "synthetic_reserved_domain",
+          "p_phishing": 0.3807,
+          "p_legitimate": 0.6193,
+          "predicted_at_0_50": "legitimate"
+        },
+        {
+          "url": "https://github.com.example.net/login",
+          "expected_label": "synthetic_lookalike",
+          "verification_status": "synthetic_reserved_domain",
+          "p_phishing": 0.9398,
+          "p_legitimate": 0.0602,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "http://192.0.2.1/login",
+          "expected_label": "synthetic_ip_probe",
+          "verification_status": "synthetic_documentation_range",
+          "p_phishing": 0.9833,
+          "p_legitimate": 0.0167,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://203.0.113.10/secure/update?redirect=account",
+          "expected_label": "synthetic_ip_probe",
+          "verification_status": "synthetic_documentation_range",
+          "p_phishing": 0.9848,
+          "p_legitimate": 0.0152,
+          "predicted_at_0_50": "phishing"
+        },
+        {
+          "url": "https://bitly.com/3example",
+          "expected_label": "synthetic_short_link",
+          "verification_status": "synthetic_unresolved_short_link",
+          "p_phishing": 0.9842,
+          "p_legitimate": 0.0158,
+          "predicted_at_0_50": "phishing"
+        }
+      ],
+      "test_any_truncated": false,
+      "test_max_tokens": 169
+    }
+  },
+  "prior_error_tokens": [
+    {
+      "url": "https://web.whatsapp.com",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "web",
+        ".",
+        "whatsapp",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://web.whatsapp.com",
+      "decoded_matches_url": true,
+      "n_tokens": 9
+    },
+    {
+      "url": "https://github.com",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "g",
+        "ith",
+        "ub",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://github.com",
+      "decoded_matches_url": true,
+      "n_tokens": 9
+    },
+    {
+      "url": "https://login.microsoftonline.com",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "login",
+        ".",
+        "microsoft",
+        "online",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://login.microsoftonline.com",
+      "decoded_matches_url": true,
+      "n_tokens": 10
+    },
+    {
+      "url": "http://neverssl.com",
+      "tokens": [
+        "[CLS]",
+        "http",
+        "://",
+        "nev",
+        "ers",
+        "sl",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "http://neverssl.com",
+      "decoded_matches_url": true,
+      "n_tokens": 9
+    },
+    {
+      "url": "https://news.ycombinator.com",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "news",
+        ".",
+        "y",
+        "com",
+        "bin",
+        "ator",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://news.ycombinator.com",
+      "decoded_matches_url": true,
+      "n_tokens": 12
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/react/package.json",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "cdn",
+        ".",
+        "js",
+        "deli",
+        "vr",
+        ".",
+        "net",
+        "/",
+        "n",
+        "pm",
+        "/",
+        "re",
+        "act",
+        "/",
+        "package",
+        ".",
+        "j",
+        "son",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://cdn.jsdelivr.net/npm/react/package.json",
+      "decoded_matches_url": true,
+      "n_tokens": 22
+    },
+    {
+      "url": "https://old.reddit.com",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "old",
+        ".",
+        "red",
+        "dit",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://old.reddit.com",
+      "decoded_matches_url": true,
+      "n_tokens": 10
+    },
+    {
+      "url": "https://outlook.live.com",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "out",
+        "look",
+        ".",
+        "live",
+        ".",
+        "com",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://outlook.live.com",
+      "decoded_matches_url": true,
+      "n_tokens": 10
+    },
+    {
+      "url": "https://store.workshopcommunitybrowse.com/sharedfiles/filesdetails/id=3832495514/",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "store",
+        ".",
+        "workshop",
+        "community",
+        "browse",
+        ".",
+        "com",
+        "/",
+        "shared",
+        "files",
+        "/",
+        "files",
+        "details",
+        "/",
+        "id",
+        "=",
+        "383",
+        "24",
+        "955",
+        "14",
+        "/",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://store.workshopcommunitybrowse.com/sharedfiles/filesdetails/id=3832495514/",
+      "decoded_matches_url": true,
+      "n_tokens": 25
+    },
+    {
+      "url": "https://roblox.com.bz/games/82205993156224/Walk-10000-Stairs-for-Neko-Girl?privateServerLinkCode=01763772834170954578562896236934",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "ro",
+        "blo",
+        "x",
+        ".",
+        "com",
+        ".",
+        "bz",
+        "/",
+        "games",
+        "/",
+        "82",
+        "205",
+        "99",
+        "315",
+        "62",
+        "24",
+        "/",
+        "walk",
+        "-",
+        "10000",
+        "-",
+        "st",
+        "air",
+        "s",
+        "-",
+        "for",
+        "-",
+        "ne",
+        "ko",
+        "-",
+        "girl",
+        "?",
+        "priv",
+        "ates",
+        "er",
+        "ver",
+        "link",
+        "code",
+        "=",
+        "0",
+        "176",
+        "37",
+        "72",
+        "834",
+        "170",
+        "95",
+        "457",
+        "856",
+        "28",
+        "96",
+        "236",
+        "93",
+        "4",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://roblox.com.bz/games/82205993156224/walk-10000-stairs-for-neko-girl?privateserverlinkcode=01763772834170954578562896236934",
+      "decoded_matches_url": false,
+      "n_tokens": 57
+    },
+    {
+      "url": "http://thrshopee155.blogspot.com/",
+      "tokens": [
+        "[CLS]",
+        "http",
+        "://",
+        "thr",
+        "shop",
+        "ee",
+        "155",
+        ".",
+        "blogs",
+        "pot",
+        ".",
+        "com",
+        "/",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "http://thrshopee155.blogspot.com/",
+      "decoded_matches_url": true,
+      "n_tokens": 14
+    },
+    {
+      "url": "https://www.roblox.com.et/users/2717531752/profile",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "www",
+        ".",
+        "ro",
+        "blo",
+        "x",
+        ".",
+        "com",
+        ".",
+        "et",
+        "/",
+        "users",
+        "/",
+        "27",
+        "17",
+        "53",
+        "17",
+        "52",
+        "/",
+        "profile",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://www.roblox.com.et/users/2717531752/profile",
+      "decoded_matches_url": true,
+      "n_tokens": 23
+    }
+  ],
+  "roblox_reference_tokens": [
+    {
+      "url": "https://www.roblox.com/",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "www",
+        ".",
+        "ro",
+        "blo",
+        "x",
+        ".",
+        "com",
+        "/",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://www.roblox.com/",
+      "decoded_matches_url": true,
+      "n_tokens": 12
+    },
+    {
+      "url": "https://www.roblox.com/games",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "www",
+        ".",
+        "ro",
+        "blo",
+        "x",
+        ".",
+        "com",
+        "/",
+        "games",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://www.roblox.com/games",
+      "decoded_matches_url": true,
+      "n_tokens": 13
+    },
+    {
+      "url": "https://roblox.com/",
+      "tokens": [
+        "[CLS]",
+        "https",
+        "://",
+        "ro",
+        "blo",
+        "x",
+        ".",
+        "com",
+        "/",
+        "[SEP]"
+      ],
+      "decoded_without_special_tokens": "https://roblox.com/",
+      "decoded_matches_url": true,
+      "n_tokens": 10
+    }
+  ],
+  "roblox_reference_scores": {
+    "phiusiil": [
+      {
+        "url": "https://www.roblox.com/",
+        "role": "analysis_only_not_in_verified_metrics",
+        "p_phishing": 0.9846,
+        "p_legitimate": 0.0154,
+        "tokens": [
+          "[CLS]",
+          "https",
+          "://",
+          "www",
+          ".",
+          "ro",
+          "blo",
+          "x",
+          ".",
+          "com",
+          "/",
+          "[SEP]"
+        ]
+      },
+      {
+        "url": "https://www.roblox.com/games",
+        "role": "analysis_only_not_in_verified_metrics",
+        "p_phishing": 0.9802,
+        "p_legitimate": 0.0198,
+        "tokens": [
+          "[CLS]",
+          "https",
+          "://",
+          "www",
+          ".",
+          "ro",
+          "blo",
+          "x",
+          ".",
+          "com",
+          "/",
+          "games",
+          "[SEP]"
+        ]
+      },
+      {
+        "url": "https://roblox.com/",
+        "role": "analysis_only_not_in_verified_metrics",
+        "p_phishing": 0.9851,
+        "p_legitimate": 0.0149,
+        "tokens": [
+          "[CLS]",
+          "https",
+          "://",
+          "ro",
+          "blo",
+          "x",
+          ".",
+          "com",
+          "/",
+          "[SEP]"
+        ]
+      }
+    ],
+    "ealvaradob": [
+      {
+        "url": "https://www.roblox.com/",
+        "role": "analysis_only_not_in_verified_metrics",
+        "p_phishing": 0.0356,
+        "p_legitimate": 0.9644,
+        "tokens": [
+          "[CLS]",
+          "https",
+          "://",
+          "www",
+          ".",
+          "ro",
+          "blo",
+          "x",
+          ".",
+          "com",
+          "/",
+          "[SEP]"
+        ]
+      },
+      {
+        "url": "https://www.roblox.com/games",
+        "role": "analysis_only_not_in_verified_metrics",
+        "p_phishing": 0.0143,
+        "p_legitimate": 0.9857,
+        "tokens": [
+          "[CLS]",
+          "https",
+          "://",
+          "www",
+          ".",
+          "ro",
+          "blo",
+          "x",
+          ".",
+          "com",
+          "/",
+          "games",
+          "[SEP]"
+        ]
+      },
+      {
+        "url": "https://roblox.com/",
+        "role": "analysis_only_not_in_verified_metrics",
+        "p_phishing": 0.116,
+        "p_legitimate": 0.884,
+        "tokens": [
+          "[CLS]",
+          "https",
+          "://",
+          "ro",
+          "blo",
+          "x",
+          ".",
+          "com",
+          "/",
+          "[SEP]"
+        ]
+      }
+    ]
+  }
+}

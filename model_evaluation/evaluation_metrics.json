@@ -1,0 +1,181 @@
+{
+  "n": 100,
+  "accuracy": 0.67,
+  "precision_phishing": 0.6024096385542169,
+  "recall_phishing": 1.0,
+  "f1_phishing": 0.7518796992481204,
+  "false_positive_rate": 0.66,
+  "false_negative_rate": 0.0,
+  "confusion_matrix": {
+    "true_phishing_predicted_phishing": 50,
+    "true_phishing_predicted_legitimate": 0,
+    "true_legitimate_predicted_phishing": 33,
+    "true_legitimate_predicted_legitimate": 17
+  },
+  "seconds_total": 4.42,
+  "seconds_per_url": 0.0442,
+  "confidence": {
+    "true_legitimate_correct": {
+      "n": 17,
+      "min": 95.44,
+      "median": 98.53,
+      "mean": 98.23058823529412,
+      "max": 98.58,
+      "at_least_90": 17,
+      "at_least_98": 15
+    },
+    "false_positives": {
+      "n": 33,
+      "min": 94.53,
+      "median": 98.44,
+      "mean": 98.11575757575758,
+      "max": 98.56,
+      "at_least_90": 33,
+      "at_least_98": 26
+    },
+    "true_phishing_correct": {
+      "n": 50,
+      "min": 98.44,
+      "median": 98.53,
+      "mean": 98.5252,
+      "max": 98.57,
+      "at_least_90": 50,
+      "at_least_98": 50
+    },
+    "false_negatives": {
+      "n": 0
+    }
+  },
+  "subgroups": {
+    "legitimate_with_www": {
+      "n": 26,
+      "errors": 9,
+      "error_rate": 0.34615384615384615
+    },
+    "legitimate_without_www": {
+      "n": 24,
+      "errors": 24,
+      "error_rate": 1.0
+    },
+    "legitimate_http": {
+      "n": 2,
+      "errors": 2,
+      "error_rate": 1.0
+    },
+    "legitimate_https": {
+      "n": 48,
+      "errors": 31,
+      "error_rate": 0.6458333333333334
+    },
+    "legitimate_with_path": {
+      "n": 22,
+      "errors": 22,
+      "error_rate": 1.0
+    },
+    "legitimate_with_query": {
+      "n": 3,
+      "errors": 3,
+      "error_rate": 1.0
+    },
+    "legitimate_with_brand": {
+      "n": 16,
+      "errors": 11,
+      "error_rate": 0.6875
+    },
+    "legitimate_with_hyphen": {
+      "n": 7,
+      "errors": 6,
+      "error_rate": 0.8571428571428571
+    },
+    "legitimate_with_keyword": {
+      "n": 2,
+      "errors": 2,
+      "error_rate": 1.0
+    },
+    "phishing_http": {
+      "n": 20,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_https": {
+      "n": 30,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_with_path": {
+      "n": 27,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_with_query": {
+      "n": 8,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_with_hyphen": {
+      "n": 27,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_with_keyword": {
+      "n": 7,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_subdomain": {
+      "n": 37,
+      "errors": 0,
+      "error_rate": 0.0
+    },
+    "phishing_ip": {
+      "n": 0
+    },
+    "legitimate_length_at_or_above_median": {
+      "n": 14,
+      "errors": 14,
+      "error_rate": 1.0
+    },
+    "legitimate_length_below_median": {
+      "n": 36,
+      "errors": 19,
+      "error_rate": 0.5277777777777778
+    }
+  },
+  "median_url_length": 35,
+  "false_positive_urls": [
+    "https://www.google.com/search?q=weather",
+    "https://maps.google.com",
+    "https://accounts.google.com",
+    "https://drive.google.com",
+    "https://web.whatsapp.com",
+    "https://github.com",
+    "https://github.com/python/cpython",
+    "https://learn.microsoft.com/en-us/windows/",
+    "https://login.microsoftonline.com",
+    "https://en.wikipedia.org/wiki/Phishing",
+    "https://docs.python.org/3/library/urllib.parse.html",
+    "https://pypi.org/project/pip/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+    "http://neverssl.com",
+    "http://info.cern.ch/hypertext/WWW/TheProject.html",
+    "https://www.w3.org/TR/url/",
+    "https://www.rfc-editor.org/rfc/rfc3986",
+    "https://blog.cloudflare.com",
+    "https://support.apple.com/en-us",
+    "https://www.bbc.com/news",
+    "https://stackoverflow.com/questions",
+    "https://news.ycombinator.com",
+    "https://arxiv.org/abs/1701.06234",
+    "https://www.npmjs.com/package/react",
+    "https://cdn.jsdelivr.net/npm/react/package.json",
+    "https://ftp.gnu.org/gnu/",
+    "https://old.reddit.com",
+    "https://outlook.live.com",
+    "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+    "https://www.iana.org/domains",
+    "https://www.cloudflare.com/learning/dns/what-is-dns/",
+    "https://en.wikipedia.org/wiki/URL?useskin=vector",
+    "https://www.microsoft.com/en-us/windows"
+  ],
+  "false_negative_urls": []
+}

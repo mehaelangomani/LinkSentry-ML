@@ -11,19 +11,29 @@ logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 logging.getLogger("transformers.configuration_utils").setLevel(logging.ERROR)
 
 REPO = "CrabInHoney/urlbert-tiny-v6"
-HEAD = "phiusiil_phishing_url"
+REVISION = "020744435b3be870dabb2bba0b41237bea69b84b"
+HEAD = "ealvaradob_phishing_dataset"
+# This head is the opposite of the PhiUSIIL head. Do not read class 0 as phishing.
+EXPECTED_LABELS = {0: "legitimate", 1: "phishing"}
 
 
 @lru_cache(maxsize=1)
 def load_model_and_tokenizer():
     """Load tokenizer and model, cached for reuse."""
-    tokenizer = AutoTokenizer.from_pretrained(REPO)
+    tokenizer = AutoTokenizer.from_pretrained(REPO, revision=REVISION)
     model = AutoModelForSequenceClassification.from_pretrained(
         REPO,
+        revision=REVISION,
         subfolder=f"heads/{HEAD}",
         trust_remote_code=True
     )
     model.eval()
+    labels = {int(index): str(name).lower() for index, name in model.config.id2label.items()}
+    if labels != EXPECTED_LABELS:
+        raise RuntimeError(
+            f"Refusing to score with label map {labels}. "
+            f"Expected {EXPECTED_LABELS} for head {HEAD}."
+        )
 
     # Fix BOS/EOS token IDs if they exceed vocabulary size (tokenizer config issue)
     vocab_size = tokenizer.vocab_size
@@ -65,16 +75,21 @@ def predict_url(url: str) -> dict:
             outputs = model(**inputs)
 
         probabilities = torch.softmax(outputs.logits, dim=-1)[0]
-        prediction = probabilities.argmax().item()
-        predicted_label = model.config.id2label[prediction]
-        confidence = probabilities[prediction].item() * 100
+        labels = {int(index): str(name).lower() for index, name in model.config.id2label.items()}
+        named = {labels[index]: float(probabilities[index].item()) for index in labels}
+        if set(named) != {"phishing", "legitimate"}:
+            return {"error": f"Unexpected label map: {labels}"}
+
+        prediction = int(probabilities.argmax().item())
+        predicted_label = labels[prediction]
+        confidence = named[predicted_label] * 100
 
         return {
             "label": predicted_label,
             "confidence": round(confidence, 2),
             "probabilities": {
-                "phishing": round(probabilities[0].item() * 100, 2),
-                "legitimate": round(probabilities[1].item() * 100, 2)
+                "phishing": round(named["phishing"] * 100, 2),
+                "legitimate": round(named["legitimate"] * 100, 2)
             },
             "error": None
         }
@@ -88,8 +103,9 @@ def get_model_info() -> dict:
     model, tokenizer = load_model_and_tokenizer()
     return {
         "repo": REPO,
+        "revision": REVISION,
         "head": HEAD,
-        "labels": model.config.id2label,
+        "labels": {int(index): str(name).lower() for index, name in model.config.id2label.items()},
         "max_length": model.config.max_length,
         "vocab_size": tokenizer.vocab_size,
         "model_type": model.config.model_type

@@ -1,0 +1,6 @@
+{
+  "name": "Vexor — Global Payments Waitlist",
+  "description": "Signup call-to-action and footer for Vexor, a global payments platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

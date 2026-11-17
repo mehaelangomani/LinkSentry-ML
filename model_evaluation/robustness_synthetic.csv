@@ -1,0 +1,9 @@
+url,expected_label,source,verification_status,split,category,notes
+http://docs.github.com/,legitimate,synthetic,synthetic_scheme_variant,synthetic,subdomain,HTTP variant of a published docs host. Not fetched.
+https://www.docs.github.com/,legitimate,synthetic,synthetic_www_variant,synthetic,https,www prefix added to a real host. Not fetched.
+https://paypal.example.com/login,synthetic_lookalike,synthetic,synthetic_reserved_domain,synthetic,synthetic,example.com is reserved. Not a verified phishing incident.
+https://accounts.google.example.com/,synthetic_lookalike,synthetic,synthetic_reserved_domain,synthetic,synthetic,example.com is reserved. Not a verified phishing incident.
+https://github.com.example.net/login,synthetic_lookalike,synthetic,synthetic_reserved_domain,synthetic,synthetic,example.net is reserved. Not a verified phishing incident.
+http://192.0.2.1/login,synthetic_ip_probe,synthetic,synthetic_documentation_range,synthetic,synthetic,192.0.2.0/24 is TEST-NET. Not a verified phishing incident.
+https://203.0.113.10/secure/update?redirect=account,synthetic_ip_probe,synthetic,synthetic_documentation_range,synthetic,synthetic,203.0.113.0/24 is TEST-NET. Not a verified phishing incident.
+https://bitly.com/3example,synthetic_short_link,synthetic,synthetic_unresolved_short_link,synthetic,synthetic,Shortener path was constructed. Destination was not resolved and is not a verified label.

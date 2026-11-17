@@ -1,0 +1,82 @@
+url,expected_label,source,verification_status,split,category,notes
+https://www.linkedin.com/login,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://accounts.spotify.com/login,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://accounts.nintendo.com/,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://auth.services.adobe.com/,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://www.dropbox.com/login,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://www.twitch.tv/login,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://www.netflix.com/login,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://www.ebay.com/signin/,legitimate,published public web address,not_fetched_published_address,validation,login,Page was not requested.
+https://docs.github.com/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://mail.google.com/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://news.google.com/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://play.google.com/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://commons.wikimedia.org/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://api.weather.gov/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://developer.spotify.com/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://portal.azure.com/,legitimate,published public web address,not_fetched_published_address,validation,subdomain,Page was not requested.
+https://www.reuters.com/world/,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://www.bbc.co.uk/news,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://csrc.nist.gov/Projects,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://numpy.org/doc/stable/,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://kubernetes.io/docs/home/,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://www.debian.org/distrib/,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://nginx.org/en/docs/,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://react.dev/reference/react,legitimate,published public web address,not_fetched_published_address,validation,path,Page was not requested.
+https://www.bing.com/search?q=weather,legitimate,published public web address,not_fetched_published_address,validation,query,Page was not requested.
+https://search.brave.com/search?q=weather,legitimate,published public web address,not_fetched_published_address,validation,query,Page was not requested.
+https://archive.org/search?query=internet,legitimate,published public web address,not_fetched_published_address,validation,query,Page was not requested.
+https://www.ebay.com/sch/i.html?_nkw=keyboard,legitimate,published public web address,not_fetched_published_address,validation,query,Page was not requested.
+https://openlibrary.org/search?q=internet,legitimate,published public web address,not_fetched_published_address,validation,query,Page was not requested.
+https://1.1.1.1/,legitimate,published public web address,not_fetched_published_address,validation,ip,Page was not requested.
+https://one.one.one.one/,legitimate,published public web address,not_fetched_published_address,validation,ip,Page was not requested.
+https://bitly.com/,legitimate,published public web address,not_fetched_published_address,validation,shortener,Page was not requested.
+https://kubernetes.io/docs/concepts/overview/working-with-objects/names/,legitimate,published public web address,not_fetched_published_address,validation,long,Page was not requested.
+https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html,legitimate,published public web address,not_fetched_published_address,validation,long,Page was not requested.
+https://www.cdc.gov/,legitimate,published public web address,not_fetched_published_address,validation,homepage,Page was not requested.
+https://www.sec.gov/,legitimate,published public web address,not_fetched_published_address,validation,homepage,Page was not requested.
+https://europa.eu/,legitimate,published public web address,not_fetched_published_address,validation,homepage,Page was not requested.
+https://www.icann.org/,legitimate,published public web address,not_fetched_published_address,validation,homepage,Page was not requested.
+https://huggingface.co/docs,legitimate,published public web address,not_fetched_published_address,validation,homepage,Page was not requested.
+https://crates.io/,legitimate,published public web address,not_fetched_published_address,validation,homepage,Page was not requested.
+http://ananeosi-support.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,http,Not visited. Tags: http.
+http://wechatjp.org/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,http,Not visited. Tags: http.
+http://www.hadiah-shopee03.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,http,Not visited. Tags: http.
+http://www.infopemenang-12.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,http,Not visited. Tags: http.
+http://www.raiffeisen.ch.portal.ketm.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,http,Not visited. Tags: http.
+http://www.trustwallet-secure.duckdns.org/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,http,Not visited. Tags: http.
+https://dapp-coin.top/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,https,Not visited. Tags: https.
+https://www.infoundianshopee26.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,https,Not visited. Tags: https.
+https://www.shopee384.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,https,Not visited. Tags: https.
+https://3r1p8e-9v2m1p8a-mbtz8p9m1k2-1m8p.pages.dev/welcome_aboard/?welcome=10009568686956300&token248=10009568686956300&name_token136=bwl+global,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,long,"Not visited. Tags: https, long, query, path, subdomain."
+https://net16ct-tur-biz-maki-velo.pages.dev/rtyu-iopj-qewr-thjm/?welcome=111756038175151&idnp=111756038175151&name_idnp=330+hosting+&+consulting=,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,long,"Not visited. Tags: https, long, query, path, subdomain."
+https://ssosigninattcomilogin0ym7my.dkmsubdomainupdate.workers.dev/home.php?usrid=jg4zeUIO2rPsiovqM9fgGZA6yaM45uC00QiWFmiQm7rApmCHDl44DTYA4F3IxmKuAxYVESoGpau2s416MyGeG94mxCgVflIAb5okUmfR2rsVQw1T809Ggnb6dHdzMDAxQHN3YmVsbC5uZXQ=llkJGBQs76NnZXCCI70iouEZSfYXsu45y1xykANJfHFnsgBuq5,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,long,"Not visited. Tags: https, long, query, path, subdomain."
+https://ssosigninattcomilogin1ql00u.wipdomainauthcodec.workers.dev/home.php?usrid=hDhMpS0jmdVSyyIZ4C2NkPzaCWavE9ssCHifDzICp8d9ttdGLqaxfceqCxJCEp5ZotubwQMhLofDpZ1wpQQQR8X143rG4IuzrEGbASSzo6bKFAgdQkNcTuP1Y2hhd24ubHl0bGVAc2JjZ2xvYmFsLm5ldA==XMBKDZZE6powPIaPFdu5c1mS2cEm6HUaxz0Bx0P1SntBUO0P8H,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,long,"Not visited. Tags: https, long, query, path, subdomain."
+http://hrutb.github.io/MovieTask-CRUD-,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,lookalike,"Not visited. Tags: http, path, subdomain, lookalike."
+http://tajulcodes.github.io/Netflix-Website-Clone,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,lookalike,"Not visited. Tags: http, path, subdomain, lookalike."
+https://click-facebook.blogspot.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,lookalike,"Not visited. Tags: https, subdomain, lookalike."
+https://mostsalma909-sketch.github.io/Facebook-old-home-page/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,lookalike,"Not visited. Tags: https, path, subdomain, lookalike."
+https://roblox.ly/users/229105539/profile,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,lookalike,"Not visited. Tags: https, path, lookalike."
+http://crsorg.us.cc/crs/verifycertificate.php/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: http, path, subdomain."
+http://trackdevice.live/1JM,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: http, path."
+https://bastion-attestation-651b.s2506076.workers.dev/analysis_center/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: https, path, subdomain."
+https://dlk-ig52aq-h4zss-aep8-661.pages.dev/send_appeal_request,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: https, path, subdomain."
+https://jbzs7-lfu-xmy6-ul0yc-15-10-2026-aa.pages.dev/send_appeal_request,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: https, path, subdomain."
+https://meta-olive-ten.vercel.app/Meta-for-business,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: https, path, subdomain."
+https://q10-9lkog-ty0-gztt-ahdoi.pages.dev/send_appeal_request,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: https, path, subdomain."
+https://www.madethis.website/s/w5hhfne7/#galyn@ecf8244a9831cccf9c43d8e6592e26e3199a.com,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,path,"Not visited. Tags: https, path."
+http://basketbackup.com/bb-w/?sid=33293346&uid=456b232b-1ca8-435c-9653-743efa3222e6&eid=0,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,query,"Not visited. Tags: http, query, path."
+https://account-connect.officeyour.com/?r_id=01M6GQYKJFXXK0XKETZPT5JM4K,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,query,"Not visited. Tags: https, query, subdomain."
+https://humanres.co.uk/?r=0ebe3fc5-7248-4e87-8881-08f3a5a64299&rg=eu,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,query,"Not visited. Tags: https, query, subdomain."
+https://sharemyhtml.com/p/Ao8xSJznw7?eta=elen1@16cc49181c8bb61cd3b6a6691cb60ca3e3df.net,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,query,"Not visited. Tags: https, query, path."
+http://rebrand.ly/dc75e6,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,shortener,"Not visited. Tags: http, shortener, path."
+http://7ris7-e2s-p113-og6er-18-09-2026-hh.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: http, subdomain."
+http://kvmxq84pla-6p3w9zt-2j7d5g-rn18v.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: http, subdomain."
+http://pyryc-tbg-4edn-1y5mg-18-09-2026-aa.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: http, subdomain."
+http://uiflix.netlify.app/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: http, subdomain."
+https://005ay-z4g-rfez-wzdpn-18-09-2026-hh.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: https, subdomain."
+https://couriersplease.addliqw.com/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: https, subdomain."
+https://poste-digitalsolution.alosys.it/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: https, subdomain."
+https://sp22ct-zemix-biz-kurev-vonad.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: https, subdomain."
+https://sp25ct11-zulrani-biz-mavkaro.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: https, subdomain."
+https://zvknp927-3m8w5xt-6j2d4g-rq81.pages.dev/,phishing,OpenPhish public feed retrieved 2026-11-17,vendor_feed_unvisited,validation,subdomain,"Not visited. Tags: https, subdomain."

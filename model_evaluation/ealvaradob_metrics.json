@@ -1,0 +1,184 @@
+{
+  "n": 100,
+  "accuracy": 0.88,
+  "precision_phishing": 0.8518518518518519,
+  "recall_phishing": 0.92,
+  "f1_phishing": 0.8846153846153846,
+  "false_positive_rate": 0.16,
+  "false_negative_rate": 0.08,
+  "confusion_matrix": {
+    "true_phishing_predicted_phishing": 46,
+    "true_phishing_predicted_legitimate": 4,
+    "true_legitimate_predicted_phishing": 8,
+    "true_legitimate_predicted_legitimate": 42
+  },
+  "repository": "CrabInHoney/urlbert-tiny-v6",
+  "revision": "020744435b3be870dabb2bba0b41237bea69b84b",
+  "head": "heads/ealvaradob_phishing_dataset",
+  "id2label": {
+    "0": "legitimate",
+    "1": "phishing"
+  },
+  "max_length": 512,
+  "tokenizer_do_lower_case": false,
+  "encoder_params": 2033408,
+  "head_params": 396802,
+  "load_seconds": 8.84,
+  "working_set_mb_after_load": null,
+  "seconds_total": 0.45,
+  "seconds_per_url": 0.0045,
+  "max_tokens_seen": 118,
+  "any_truncated": false,
+  "confidence": {
+    "true_legitimate_correct": {
+      "n": 42,
+      "min": 52.6,
+      "median": 98.19,
+      "mean": 95.64738095238096,
+      "max": 98.68,
+      "at_least_90": 39,
+      "at_least_98": 23
+    },
+    "false_positives": {
+      "n": 8,
+      "min": 82.43,
+      "median": 96.65,
+      "mean": 92.72125,
+      "max": 98.55,
+      "at_least_90": 5,
+      "at_least_98": 1
+    },
+    "true_phishing_correct": {
+      "n": 46,
+      "min": 55.7,
+      "median": 98.38,
+      "mean": 96.2795652173913,
+      "max": 98.59,
+      "at_least_90": 42,
+      "at_least_98": 31
+    },
+    "false_negatives": {
+      "n": 4,
+      "min": 70.39,
+      "median": 95.84,
+      "mean": 89.3675,
+      "max": 97.77,
+      "at_least_90": 3,
+      "at_least_98": 0
+    }
+  },
+  "false_positive_urls": [
+    {
+      "url": "https://web.whatsapp.com",
+      "confidence": 97.44,
+      "prob_phishing": 97.44,
+      "prob_legitimate": 2.56
+    },
+    {
+      "url": "https://github.com",
+      "confidence": 87.71,
+      "prob_phishing": 87.71,
+      "prob_legitimate": 12.29
+    },
+    {
+      "url": "https://login.microsoftonline.com",
+      "confidence": 88.3,
+      "prob_phishing": 88.3,
+      "prob_legitimate": 11.7
+    },
+    {
+      "url": "http://neverssl.com",
+      "confidence": 96.73,
+      "prob_phishing": 96.73,
+      "prob_legitimate": 3.27
+    },
+    {
+      "url": "https://news.ycombinator.com",
+      "confidence": 93.96,
+      "prob_phishing": 93.96,
+      "prob_legitimate": 6.04
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/react/package.json",
+      "confidence": 96.65,
+      "prob_phishing": 96.65,
+      "prob_legitimate": 3.35
+    },
+    {
+      "url": "https://old.reddit.com",
+      "confidence": 98.55,
+      "prob_phishing": 98.55,
+      "prob_legitimate": 1.45
+    },
+    {
+      "url": "https://outlook.live.com",
+      "confidence": 82.43,
+      "prob_phishing": 82.43,
+      "prob_legitimate": 17.57
+    }
+  ],
+  "false_negative_urls": [
+    {
+      "url": "https://store.workshopcommunitybrowse.com/sharedfiles/filesdetails/id=3832495514/",
+      "confidence": 95.84,
+      "prob_phishing": 4.16,
+      "prob_legitimate": 95.84
+    },
+    {
+      "url": "https://roblox.com.bz/games/82205993156224/Walk-10000-Stairs-for-Neko-Girl?privateServerLinkCode=01763772834170954578562896236934",
+      "confidence": 97.77,
+      "prob_phishing": 2.23,
+      "prob_legitimate": 97.77
+    },
+    {
+      "url": "http://thrshopee155.blogspot.com/",
+      "confidence": 70.39,
+      "prob_phishing": 29.61,
+      "prob_legitimate": 70.39
+    },
+    {
+      "url": "https://www.roblox.com.et/users/2717531752/profile",
+      "confidence": 93.47,
+      "prob_phishing": 6.53,
+      "prob_legitimate": 93.47
+    }
+  ],
+  "focus": [
+    {
+      "url": "https://accounts.google.com",
+      "expected_label": "legitimate",
+      "predicted_label": "legitimate",
+      "confidence": 98.19,
+      "prob_phishing": 1.81,
+      "prob_legitimate": 98.19
+    },
+    {
+      "url": "https://web.whatsapp.com",
+      "expected_label": "legitimate",
+      "predicted_label": "phishing",
+      "confidence": 97.44,
+      "prob_phishing": 97.44,
+      "prob_legitimate": 2.56
+    },
+    {
+      "url": "https://github.com",
+      "expected_label": "legitimate",
+      "predicted_label": "phishing",
+      "confidence": 87.71,
+      "prob_phishing": 87.71,
+      "prob_legitimate": 12.29
+    },
+    {
+      "url": "https://login.microsoftonline.com",
+      "expected_label": "legitimate",
+      "predicted_label": "phishing",
+      "confidence": 88.3,
+      "prob_phishing": 88.3,
+      "prob_legitimate": 11.7
+    }
+  ],
+  "legitimate_with_path_errors": 1,
+  "legitimate_with_path_n": 22,
+  "legitimate_with_query_errors": 0,
+  "legitimate_with_query_n": 3
+}

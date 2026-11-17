@@ -1,80 +1,105 @@
-# LinkSentry-ML
+# LinkSentry
 
-Machine-learning-based phishing URL detection application built with Streamlit and a fine-tuned URLBERT model.
+LinkSentry is a local phishing-URL checker. You paste a URL into the original scanner page, and a small transformer model classifies the URL text as phishing or legitimate. The page is hosted by Streamlit. The app does not visit the website, call a paid API, or look up a live domain reputation.
 
-## Overview
+## How the model works
 
-LinkSentry analyses URL strings to detect phishing attempts using a transformer-based model. It never visits or loads the submitted websites — analysis is performed entirely on the URL structure and character patterns.
+The encoder is [CrabInHoney/urlbert-tiny-v6](https://huggingface.co/CrabInHoney/urlbert-tiny-v6), a ModernBERT URL model with about 2.03 million parameters. Production uses the classification head `ealvaradob_phishing_dataset` at revision `020744435b3be870dabb2bba0b41237bea69b84b`.
 
-**Model:** `CrabInHoney/urlbert-tiny-v6` (classification head: `phiusiil_phishing_url`)  
-**Labels:** 0 = phishing, 1 = legitimate
+The head reads the URL string only. It does not check DNS, download the page, or inspect certificates. A high score means the model is confident in its own class, not that the website has been independently verified as safe.
 
-## Features
+Label map for this head:
 
-- Clean, modern single-page Streamlit interface
-- Real-time phishing/legitimate classification with confidence scores
-- Input validation and error handling
-- Model and tokenizer cached for fast repeated scans
-- Detailed probability breakdown for both classes
-- Model information and disclaimer sections
+- Class 0 = legitimate
+- Class 1 = phishing
+
+This is the opposite of the unused `phiusiil_phishing_url` head. `model.py` checks the loaded map before scoring and reads probabilities by class name.
+
+## Technologies
+
+- Streamlit, as the host
+- The original HTML, CSS, and JavaScript page in `frontend_extracted/`
+- PyTorch and Hugging Face Transformers
+- The URLBERT-tiny encoder and the ealvaradob head, loaded from Hugging Face on first run
+
+No API key is required. The first launch downloads the public weights into the local Hugging Face cache.
+
+## Project structure
+
+```
+LinkSentry-ML/
+├── app.py                         # Streamlit host
+├── model.py                       # Load the head and run predict_url
+├── test_model.py                  # Checks the label map and prints sample scans
+├── requirements.txt
+├── frontend_extracted/            # Original scanner page
+├── link_sentry_component/         # Serves that page inside Streamlit
+└── model_evaluation/              # Frozen datasets and evaluation reports
+```
 
 ## Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/mehaelangomani/LinkSentry-ML.git
 cd LinkSentry-ML
-
-# Create and activate virtual environment
 python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # Linux/macOS
-
-# Install dependencies
+venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Usage
+On Linux or macOS, activate the environment with `source venv/bin/activate`.
+
+## Run locally
+
+From the repository root:
 
 ```bash
 streamlit run app.py
 ```
 
-Then open http://localhost:8501 in your browser.
+Open http://localhost:8501. The original black page with the coral scanner is what you should see. Paste a URL that starts with `http://` or `https://` and press Scan URL. An empty or invalid value stays in the page and shows an error. A valid URL is sent to `predict_url`, and the verdict, both class scores, and the model confidence appear in the original results section.
 
-## Project Structure
+Check the wiring without the browser:
 
-```
-LinkSentry-ML/
-├── app.py              # Streamlit application
-├── model.py            # Model loading and prediction logic
-├── test_model.py       # Standalone model test script
-├── requirements.txt    # Python dependencies
-├── .gitignore          # Git ignore rules
-└── README.md           # This file
+```bash
+python test_model.py
 ```
 
-## Model Details
+## Example results
 
-The application uses a fine-tuned **URLBERT-tiny** model from Hugging Face:
+These are real outputs from `predict_url` on this head, not corrected labels. Confidence is the winning class score.
 
-- **Repository:** `CrabInHoney/urlbert-tiny-v6`
-- **Classification Head:** `phiusiil_phishing_url`
-- **Architecture:** Compact BERT variant optimised for URL classification
-- **Training Data:** PhishTank, OpenPhish, and legitimate URL datasets (PhiUSIIL)
-- **Max Sequence Length:** 128 tokens
+| URL | Prediction | Confidence | Phishing | Legitimate |
+|---|---|---|---|---|
+| https://www.google.com | legitimate | 97.88% | 2.12% | 97.88% |
+| https://www.wikipedia.org | legitimate | 98.38% | 1.62% | 98.38% |
+| https://web.whatsapp.com | phishing | 97.44% | 97.44% | 2.56% |
+| https://github.com | phishing | 87.71% | 87.71% | 12.29% |
+| http://paypal-secure-login.verify-account.com | phishing | 98.50% | 98.50% | 1.50% |
 
-The tokenizer's BOS/EOS token IDs (50281, 50282) originally exceeded the vocabulary size (8192). This is fixed at runtime in `model.py` by setting them to `None`, which prevents transformer warnings without modifying the model weights.
+`web.whatsapp.com` and `github.com` are real sites. The model still flags them. That is a known false positive, not a rule added in the app.
 
-## Disclaimer
+The lookalike example is a hostname used only as a string. The app does not open it.
 
-> **Model confidence ≠ accuracy.** The confidence score reflects how certain the model is about its prediction given its training, not the real-world probability that a URL is safe or malicious. LinkSentry is a supplementary aid, not a substitute for security best practices. Always verify suspicious URLs through multiple sources, keep software updated, and use comprehensive security solutions.
+## Measured performance
 
-## License
+On a held-out set of 79 URLs that the model did not use for threshold selection (`model_evaluation/robustness_test.csv`, default threshold 0.50):
 
-MIT License — see LICENSE file for details.
+| Metric | ealvaradob head | PhiUSIIL head, not used in the app |
+|---|---|---|
+| Accuracy | 87.3% | 51.9% |
+| Precision | 87.2% | 50.6% |
+| Recall | 87.2% | 100% |
+| F1 | 87.2% | 67.2% |
+| False-positive rate | 12.5% | 95.0% |
+| False-negative rate | 12.8% | 0% |
 
-## Acknowledgements
+The same head missed phishing URLs such as `roblox.com.bz` and `roblox.com.gr` while giving them a high legitimate score. Several ordinary login and documentation URLs are still false positives. Details are in `model_evaluation/robustness_report.md` and `model_evaluation/phase4_model_comparison.md`.
 
-- Model by [CrabInHoney](https://huggingface.co/CrabInHoney) on Hugging Face
-- Built with [Streamlit](https://streamlit.io), [PyTorch](https://pytorch.org), and [Transformers](https://huggingface.co/docs/transformers)
+Three other local models were scored on the same test. None had a lower false-positive rate than this head. The published in-dataset accuracies near 99% did not hold on these files.
+
+## Limitations
+
+LinkSentry does not guarantee protection against phishing. It can miss a malicious URL and can flag a legitimate one, sometimes with confidence above 95%. Use the result as one signal. Do not treat a "legitimate" verdict as proof that a site is safe, and do not treat the confidence percentage as a calibrated probability.
+
+The model weights are published under the Apache-2.0 license on the Hugging Face repository linked above.

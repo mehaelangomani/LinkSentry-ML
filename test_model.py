@@ -1,78 +1,55 @@
+"""Check production predict_url wiring. Does not assert that a URL is safe."""
 
-import torch
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification
-)
+from model import get_model_info, predict_url
 
-# Model details
-REPO = "CrabInHoney/urlbert-tiny-v6"
-HEAD = "phiusiil_phishing_url"
-
-print("Loading tokenizer...")
-
-tokenizer = AutoTokenizer.from_pretrained(REPO)
-
-print("Loading phishing classification model...")
-
-model = AutoModelForSequenceClassification.from_pretrained(
-    REPO,
-    subfolder=f"heads/{HEAD}",
-    trust_remote_code=True
-)
-
-model.eval()
-
-print("\nModel loaded successfully!")
-
-# Display actual model labels
-print("Model labels:", model.config.id2label)
-
-
-# Multiple URLs to test
-test_urls = [
+EXAMPLES = [
     "https://www.google.com",
     "https://www.wikipedia.org",
-    "https://www.microsoft.com",
+    "https://web.whatsapp.com",
+    "https://github.com",
     "http://paypal-secure-login.verify-account.com",
-    "http://login-bank-account-verify.example.com"
 ]
 
 
-# Analyse each URL
-print("\n========== LINK SENTRY TEST RESULTS ==========")
+def main() -> None:
+    info = get_model_info()
+    print("Model:", info["repo"], info["revision"])
+    print("Head:", info["head"])
+    print("Labels:", info["labels"])
+    if info["labels"] != {0: "legitimate", 1: "phishing"}:
+        raise SystemExit("Label map is not 0=legitimate, 1=phishing")
+    if info["head"] != "ealvaradob_phishing_dataset":
+        raise SystemExit("Production head is not ealvaradob_phishing_dataset")
 
-for url in test_urls:
+    empty = predict_url("   ")
+    invalid = predict_url("notaurl")
+    if not empty.get("error") or not invalid.get("error"):
+        raise SystemExit(f"Validation failed: {empty} {invalid}")
+    print("Empty input:", empty["error"])
+    print("Invalid input:", invalid["error"])
 
-    print("\nAnalysing URL:", url)
-
-    # Convert URL into model inputs
-    inputs = tokenizer(
-        url,
-        return_tensors="pt",
-        truncation=True,
-        max_length=model.config.max_length
-    )
-
-    # Run prediction
-    with torch.no_grad():
-        outputs = model(**inputs)
-
-    # Calculate probabilities
-    probabilities = torch.softmax(outputs.logits, dim=-1)[0]
-
-    # Get prediction
-    prediction = probabilities.argmax().item()
-
-    predicted_label = model.config.id2label[prediction]
-
-    confidence = probabilities[prediction].item() * 100
-
-    # Display results
-    print("Prediction:", predicted_label)
-    print("Confidence:", round(confidence, 2), "%")
-
-print("\n===============================================")
-print("All URL tests completed!")
+    print("\n========== LINK SENTRY TEST RESULTS ==========")
+    for url in EXAMPLES:
+        result = predict_url(url)
+        print("\nAnalysing URL:", url)
+        if result.get("error"):
+            raise SystemExit(f"Prediction failed for {url}: {result['error']}")
+        phishing = result["probabilities"]["phishing"]
+        legitimate = result["probabilities"]["legitimate"]
+        if abs((phishing + legitimate) - 100) > 0.2:
+            raise SystemExit(f"Probabilities do not sum to 100 for {url}: {result}")
+        higher = "phishing" if phishing >= legitimate else "legitimate"
+        if result["label"] != higher:
+            raise SystemExit(f"Label does not match probabilities for {url}: {result}")
+        if abs(result["confidence"] - max(phishing, legitimate)) > 0.2:
+            raise SystemExit(f"Confidence does not match the winning class for {url}: {result}")
+        print("Prediction:", result["label"])
+        print("Confidence:", result["confidence"], "%")
+        print("Phishing:", phishing, "%")
+        print("Legitimate:", legitimate, "%")
+    print("\n===============================================")
+    print("All URL tests completed!")
 
 
+if __name__ == "__main__":
+    main()
